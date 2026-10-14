@@ -1347,6 +1347,11 @@ QRCode.createBytes = function(buffer, rsBlocks) {
     'ai-ethics': {title:'추천 알고리즘과 AI 윤리',description:'학생용·교사용·결과 대시보드를 한 저장소에서 실행',category:'AI·SW',subApps:[{label:'교사용',path:'teacher.html'},{label:'대시보드',path:'dashboard.html'}]},
     'Double-slit-experiment': {title:'이중슬릿 실험 시뮬레이터',description:'관측과 간섭 현상을 살펴보는 과학 시뮬레이터',category:'과학'}
   };
+  // 특정 저장소 안의 하위 앱만 별도 카드로 표시합니다.
+  // 일반 저장소 스캔은 하지 않아 한 저장소의 학생용·교사용 페이지가 카드로 분리되지 않습니다.
+  const VIRTUAL_APPS = [
+    {repoName:'bamjjam.github.io',slug:'prism',path:'prism/',sourcePath:'prism',title:'각기둥 전개도 시뮬레이터',description:'초등 6학년을 위한 각기둥 전개도 접기·펼치기와 문제 풀이',category:'수학'}
+  ];
   const $ = id => document.getElementById(id);
   const icon = name => `<svg aria-hidden="true"><use href="#i-${name}"/></svg>`;
   const escapeHtml = s => String(s ?? '').replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -1365,9 +1370,21 @@ QRCode.createBytes = function(buffer, rsBlocks) {
       const site=typeof ed.site==='string'?validUrl(ed.site):(r.has_pages?(home||base):'');
       return {id,type:'github',title:ed.title||meta.title||r.name,description:ed.description??meta.description??r.description??'설명을 등록해 보세요.',category:ed.category||meta.category||inferCategory(r),repo:validUrl(r.html_url)||`https://github.com/${encodeURIComponent(saved.owner)}/${encodeURIComponent(r.name)}`,site,pages:!!r.has_pages,updated:r.pushed_at||r.updated_at||r.created_at||'',rawName:r.name,subApps:Array.isArray(ed.subApps)?ed.subApps:(meta.subApps||[])};
     });
-    const ids=new Set(repos.map(r=>r.id));
+    const virtualApps=VIRTUAL_APPS.flatMap(spec=>{
+      const parent=state.repos.find(r=>String(r.name||'').toLowerCase()===spec.repoName.toLowerCase());
+      if(!parent||parent.private||parent.archived||!parent.has_pages)return [];
+      const id='github:subapp:'+parent.name+':'+spec.slug, ed=saved.edits[id]||{};
+      const isUserSite=parent.name.toLowerCase()===String(saved.owner).toLowerCase()+'.github.io';
+      const base=isUserSite?'https://'+saved.owner+'.github.io/':'https://'+saved.owner+'.github.io/'+encodeURIComponent(parent.name)+'/';
+      const siteDefault=new URL(spec.path,base).href;
+      const sourceBase=validUrl(parent.html_url)||('https://github.com/'+encodeURIComponent(saved.owner)+'/'+encodeURIComponent(parent.name));
+      const branch=encodeURIComponent(parent.default_branch||'main');
+      const source=sourceBase+'/tree/'+branch+'/'+spec.sourcePath.split('/').map(encodeURIComponent).join('/');
+      return [{id,type:'github',title:ed.title||spec.title,description:ed.description??spec.description,category:ed.category||spec.category,repo:source,site:typeof ed.site==='string'?validUrl(ed.site):siteDefault,pages:true,updated:parent.pushed_at||parent.updated_at||parent.created_at||'',rawName:parent.name,subApps:Array.isArray(ed.subApps)?ed.subApps:[]}];
+    });
+    const ids=new Set([...repos,...virtualApps].map(p=>p.id));
     const manual=saved.manual.filter(p=>p&&typeof p.id==='string'&&!ids.has(p.id)).map(p=>({id:p.id,type:'manual',title:String(p.title||'이름 없는 웹앱'),description:String(p.description||'내가 직접 등록한 바로가기입니다.'),category:CATEGORIES.includes(p.category)?p.category:'기타',repo:validUrl(p.repo),site:validUrl(p.site),pages:!!validUrl(p.site),updated:p.updated||'',rawName:String(p.title||''),subApps:Array.isArray(p.subApps)?p.subApps:[]}));
-    return [...repos,...manual].filter(p=>!saved.hidden.includes(p.id));
+    return [...repos,...virtualApps,...manual].filter(p=>!saved.hidden.includes(p.id));
   }
   function filteredProjects(all){
     let p=all.filter(x=>state.filter!=='pages'||x.pages).filter(x=>state.filter!=='favorites'||saved.favorites.includes(x.id));
