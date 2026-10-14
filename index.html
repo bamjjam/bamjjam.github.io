@@ -21,6 +21,10 @@
     @media(max-width:780px){.shell{display:block}.sidebar{position:fixed;left:0;top:0;bottom:0;width:256px;transform:translateX(-110%);box-shadow:16px 0 60px #111b2920;transition:transform .25s}.sidebar.open{transform:translateX(0)}.sidebar-overlay.active{display:block;position:fixed;inset:0;background:#1520447f;z-index:11}.main{padding:21px 20px 54px}.mobile-menu{display:inline-grid}.heading{font-size:21px}.topbar{margin-bottom:21px}.hero{min-height:175px;padding:24px}.hero h2{font-size:24px}.hero-graphic{display:none}.stats{gap:9px}.stat{padding:14px 12px}.stat-icon{display:none}.stat strong{font-size:24px}}
     @media(max-width:560px){.main{padding:16px 14px 45px}.top-actions .user-pill{display:none}.hero{border-radius:18px}.hero h2{font-size:22px}.hero p{font-size:12px}.stats{grid-template-columns:repeat(3,minmax(0,1fr));margin:15px 0 27px}.stat{border-radius:12px;padding:12px 10px}.stat small{font-size:10px}.stat strong{font-size:23px}.section-head{align-items:center}.section-head h2{font-size:18px}.section-head .btn{font-size:11px;padding:8px 9px}.toolbar{gap:8px}.search-wrap{width:100%}.tools-right{width:100%;justify-content:space-between}.select{flex:1;min-width:0}.card-grid{grid-template-columns:1fr;gap:13px}.card-visual{height:95px}.tabs{gap:6px}.tab{padding:8px 10px}.modal-head,.modal-body,.modal-foot{padding-left:18px;padding-right:18px}.footer{display:block}}
     @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+    /* Multiple pages per repository + classroom-ready QR display */
+    .launch-area{border-top:1px solid #eff1f6;padding:13px 17px 16px;display:grid;gap:11px}.launch-unit{padding:10px;border:1px solid #e9ebf6;background:#fcfcff;border-radius:12px}.launch-caption{display:flex;align-items:center;gap:6px;font-size:12px;font-weight:800;color:#4c5373;margin:0 0 8px}.launch-dot{background:#6863dc;width:6px;height:6px;border-radius:50%}.launch-unit .card-action{width:100%;min-height:38px}.qr-action{display:flex;align-items:center;justify-content:center;gap:7px;width:100%;border:1px solid #dcdafd;background:#f0efff;color:#5550bf;border-radius:9px;margin-top:7px;min-height:36px;font-weight:800;font-size:12px}.qr-action svg{width:17px;height:17px}.qr-action:hover{background:#e5e3ff;border-color:#b8b3f5}.qr-action.disabled{pointer-events:none;color:#aaa;background:#f7f8fa;border-color:#edf0f4}.repo-link{display:flex;align-items:center;justify-content:center;gap:6px;color:#7e8aa0;font-size:11px;font-weight:750;padding:3px 0}.repo-link svg{width:14px;height:14px}.repo-link:hover{color:#4943cc}.qr-dialog{max-width:min(680px,calc(100vw - 26px));width:100%}.qr-dialog-main{padding:12px 26px 27px;text-align:center}.qr-paper{margin:auto;background:#fff;border:1px solid #e7eaf1;box-shadow:0 7px 26px #1d2a4d13;border-radius:18px;padding:12px;width:min(100%,390px);display:flex;align-items:center;justify-content:center;aspect-ratio:1}.qr-paper canvas{width:100%;height:auto;image-rendering:pixelated}.qr-paper.qr-error:before{content:'QR 생성 중 오류가 발생했습니다.';position:absolute;color:#d23f62;background:#fff;padding:20px}.qr-site-label{margin-top:16px;font-size:17px;font-weight:850;color:#323a57}.qr-url{margin:7px auto 0;max-width:550px;font-size:12px;color:#69738b;overflow-wrap:anywhere;user-select:all}.qr-warning{padding:10px 13px;margin:13px auto 0;text-align:left;max-width:540px;border-radius:9px;background:#fff8e9;color:#8f6527;font-size:11px}.qr-modal-actions{display:flex;justify-content:center;gap:10px;margin-top:18px;flex-wrap:wrap}.qr-modal-actions .btn{flex:1;max-width:230px}
+    @media(max-width:560px){.launch-area{padding:12px}.qr-dialog-main{padding:10px 16px 20px}.qr-paper{max-width:330px}.qr-modal-actions .btn{flex:1 1 110px;padding:10px}}
+    @media print{body:has(#qrDialog[open]) .shell,body:has(#qrDialog[open]) .sidebar-overlay{display:none}dialog.qr-dialog[open]{position:static;box-shadow:none;border:0;max-width:100%;width:100%}.qr-dialog .modal-head button,.qr-modal-actions{display:none}}
   </style>
 </head>
 <body>
@@ -50,6 +54,8 @@
     <symbol id="i-upload" viewBox="0 0 24 24"><path d="M12 17V5m-5 5 5-5 5 5M4 17v4h16v-4"/></symbol>
     <symbol id="i-close" viewBox="0 0 24 24"><path d="M5 5 19 19M19 5 5 19"/></symbol>
     <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></symbol>
+    <symbol id="i-qr" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="5.5" y="5.5" width="2" height="2"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="16.5" y="5.5" width="2" height="2"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="5.5" y="16.5" width="2" height="2"/><path d="M14 14h3v3h-3v4m7-7h-2m2 3v4h-4m-2-1h1"/></symbol>
+    <symbol id="i-copy" viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></symbol>
     <symbol id="i-check" viewBox="0 0 24 24"><path d="m4 12 5 5L20 6"/></symbol>
   </defs></svg>
   <div class="sidebar-overlay" id="overlay"></div>
@@ -91,11 +97,1241 @@
   </div>
   <dialog id="editorDialog" aria-labelledby="editorTitle"><form id="editorForm">
     <div class="modal-head"><div><h2 id="editorTitle">웹앱 추가하기</h2><p id="editorSubtitle">주소를 등록하면 바로가기를 만들 수 있습니다.</p></div><button class="close-btn" type="button" data-close="editorDialog" aria-label="닫기"><svg><use href="#i-close"/></svg></button></div>
-    <div class="modal-body"><label class="field"><span>웹앱 이름 *</span><input name="title" id="fieldTitle" required maxlength="100" placeholder="예: 분수 비교 시뮬레이터" /></label><label class="field"><span>설명</span><textarea name="description" id="fieldDescription" maxlength="360" placeholder="이 웹앱은 무엇을 하는 앱인가요?"></textarea></label><label class="field"><span>과목 분류</span><select name="category" id="fieldCategory"><option>AI·SW</option><option>과학</option><option>국어·한자</option><option>수학</option><option>사회</option><option>예체능</option><option>기타</option></select></label><label class="field"><span>웹앱 실행 주소</span><input type="url" name="site" id="fieldSite" placeholder="https://..." /><span class="hint" id="siteHint">주소가 있다면 입력해 주세요.</span></label><label class="field" id="repoField"><span>소스코드 주소 (선택)</span><input type="url" name="repo" id="fieldRepo" placeholder="https://github.com/사용자명/저장소명" /></label></div>
+    <div class="modal-body"><label class="field"><span>웹앱 이름 *</span><input name="title" id="fieldTitle" required maxlength="100" placeholder="예: 분수 비교 시뮬레이터" /></label><label class="field"><span>설명</span><textarea name="description" id="fieldDescription" maxlength="360" placeholder="이 웹앱은 무엇을 하는 앱인가요?"></textarea></label><label class="field"><span>과목 분류</span><select name="category" id="fieldCategory"><option>AI·SW</option><option>과학</option><option>국어·한자</option><option>수학</option><option>사회</option><option>예체능</option><option>기타</option></select></label><label class="field"><span>웹앱 실행 주소</span><input type="url" name="site" id="fieldSite" placeholder="https://..." /><span class="hint" id="siteHint">주소가 있다면 입력해 주세요.</span></label><label class="field"><span>같은 저장소 안의 추가 웹앱</span><textarea name="subApps" id="fieldSubApps" rows="3" placeholder="교사용 | teacher.html&#10;대시보드 | dashboard.html"></textarea><span class="hint">한 줄에 하나씩 <strong>이름 | 파일명</strong>을 적으세요. 예: 교사용 | teacher.html. 전체 URL도 가능합니다. 같은 GitHub 저장소 안의 HTML을 연결할 수 있습니다.</span></label><label class="field" id="repoField"><span>소스코드 주소 (선택)</span><input type="url" name="repo" id="fieldRepo" placeholder="https://github.com/사용자명/저장소명" /></label></div>
     <div class="modal-foot"><button type="button" class="btn btn-danger small" id="deleteManual" hidden>삭제</button><div class="modal-foot-end"><button type="button" class="btn btn-outline" data-close="editorDialog">취소</button><button type="submit" class="btn btn-primary"><svg><use href="#i-check"/></svg> 저장하기</button></div></div>
   </form></dialog>
   <dialog id="settingsDialog" aria-labelledby="settingsTitle"><div class="modal-head"><div><h2 id="settingsTitle">대시보드 설정</h2><p>공개 프로젝트 자동 수집과 브라우저 저장 데이터를 관리합니다.</p></div><button class="close-btn" type="button" data-close="settingsDialog" aria-label="닫기"><svg><use href="#i-close"/></svg></button></div><div class="modal-body"><label class="field"><span>GitHub 사용자 이름</span><input id="settingsOwner" value="bamjjam" placeholder="GitHub ID" maxlength="39" /><span class="hint">해당 계정의 공개 저장소만 자동 수집할 수 있습니다.</span></label><div class="switch-row"><div><strong>Pages 설정된 저장소 자동 표시</strong><small>GitHub API의 Pages 설정 여부를 기준으로 합니다.</small></div><input id="settingsPagesOnly" type="checkbox" checked /></div><div class="field"><span>데이터 백업</span><div class="settings-actions"><button type="button" class="btn btn-outline small" id="exportButton"><svg><use href="#i-download"/></svg> 내보내기</button><button type="button" class="btn btn-outline small" id="importButton"><svg><use href="#i-upload"/></svg> 불러오기</button><input id="importFile" type="file" accept="application/json,.json" hidden /></div><div class="hint">즐겨찾기, 직접 추가한 주소, 과목/이름 수정 정보가 포함됩니다. 비공개 주소를 담은 백업 파일을 타인과 공유하지 마세요.</div></div><div class="field"><span>숨김 처리한 저장소</span><div class="hidden-list" id="hiddenList">없음</div></div></div><div class="modal-foot"><span style="font-size:11px;color:#9ba3b5">비밀번호나 GitHub 토큰을 입력하지 않습니다.</span><div class="modal-foot-end"><button type="button" class="btn btn-primary" id="saveSettings">적용</button></div></div></dialog>
-  <dialog id="guideDialog" aria-labelledby="guideTitle"><div class="modal-head"><div><h2 id="guideTitle">사용 안내</h2><p>웹앱을 편하게 관리하기 위한 몇 가지 팁입니다.</p></div><button class="close-btn" type="button" data-close="guideDialog" aria-label="닫기"><svg><use href="#i-close"/></svg></button></div><div class="modal-body" style="font-size:13px;color:#657088;line-height:1.9"><p><strong>자동 등록:</strong> GitHub 공개 저장소는 페이지 로딩 시 불러옵니다. <strong>배포된 웹앱</strong>에는 GitHub에서 Pages 기능이 설정된 저장소만 표시됩니다.</p><p><strong>직접 추가:</strong> 공개 API에서 보이지 않는 비공개 작업물이나 다른 웹사이트를 추가하세요. 주소·이름·분류는 현재 브라우저에만 저장됩니다.</p><p><strong>수정·숨김:</strong> 각 카드 오른쪽 위 연필을 눌러 이름, 과목, 실행 주소를 고치거나 숨길 수 있습니다. 별표는 즐겨찾기입니다.</p><p><strong>백업:</strong> 다른 PC에서도 똑같이 사용하려면 설정 → 내보내기 후 새 PC에서 불러오기를 선택하세요. 공개 사이트 HTML에 개인 정보나 액세스 토큰을 넣지 마세요.</p><p><strong>주의:</strong> Pages 설정이 되어 있어도 빌드가 실패했거나 배포 주소가 다르면 실행되지 않을 수 있습니다. 그 경우 연필을 눌러 정확한 주소를 지정해 주세요.</p></div><div class="modal-foot"><div class="modal-foot-end"><button type="button" class="btn btn-primary" data-close="guideDialog">알겠습니다</button></div></div></dialog>
+  <dialog id="qrDialog" aria-labelledby="qrTitle" class="qr-dialog"><div class="modal-head"><div><h2 id="qrTitle">QR코드로 바로 접속</h2><p id="qrSubtitle">화면을 보여주면 학생들이 카메라로 찍을 수 있습니다.</p></div><button type="button" class="close-btn" data-close="qrDialog" aria-label="QR코드 창 닫기"><svg><use href="#i-close"/></svg></button></div><div class="qr-dialog-main"><div class="qr-paper"><canvas id="qrCanvas" role="img" aria-label="웹앱 접속 QR코드"></canvas></div><div class="qr-site-label" id="qrSiteLabel"></div><div class="qr-url" id="qrUrl"></div><div class="qr-warning" id="qrWarning" hidden>교사용·대시보드 주소도 공개된 Pages라면 링크를 아는 누구나 열 수 있습니다. 학생에게 공유하거나 화면을 보여줄 때 주의하세요.</div><div class="qr-modal-actions"><button class="btn btn-outline" id="qrCopy" type="button"><svg><use href="#i-copy"/></svg> 링크 복사</button><button class="btn btn-primary" id="qrDownload" type="button"><svg><use href="#i-download"/></svg> QR 이미지 저장</button></div></div></dialog>
+  <dialog id="guideDialog" aria-labelledby="guideTitle"><div class="modal-head"><div><h2 id="guideTitle">사용 안내</h2><p>웹앱을 편하게 관리하기 위한 몇 가지 팁입니다.</p></div><button class="close-btn" type="button" data-close="guideDialog" aria-label="닫기"><svg><use href="#i-close"/></svg></button></div><div class="modal-body" style="font-size:13px;color:#657088;line-height:1.9"><p><strong>자동 등록:</strong> GitHub 공개 저장소는 페이지 로딩 시 불러옵니다. <strong>배포된 웹앱</strong>에는 GitHub에서 Pages 기능이 설정된 저장소만 표시됩니다.</p><p><strong>직접 추가:</strong> 공개 API에서 보이지 않는 비공개 작업물이나 다른 웹사이트를 추가하세요. 주소·이름·분류는 현재 브라우저에만 저장됩니다.</p><p><strong>수정·숨김:</strong> 각 카드 오른쪽 위 연필을 눌러 이름, 과목, 실행 주소를 고치거나 숨길 수 있습니다. 별표는 즐겨찾기입니다.</p><p><strong>추가 웹앱:</strong> 카드의 연필을 눌러 <strong>이름 | 파일명</strong>을 한 줄에 하나씩 입력하세요. 예: 교사용 | teacher.html. 파일들은 같은 저장소에 업로드하면 됩니다. <strong>QR코드 만들기</strong>로 학생용 접속 QR을 크게 표시하거나 PNG로 저장할 수 있습니다.</p><p><strong>백업:</strong> 다른 PC에서도 똑같이 사용하려면 설정 → 내보내기 후 새 PC에서 불러오기를 선택하세요. 공개 사이트 HTML에 개인 정보나 액세스 토큰을 넣지 마세요.</p><p><strong>주의:</strong> Pages 설정이 되어 있어도 빌드가 실패했거나 배포 주소가 다르면 실행되지 않을 수 있습니다. 그 경우 연필을 눌러 정확한 주소를 지정해 주세요.</p></div><div class="modal-foot"><div class="modal-foot-end"><button type="button" class="btn btn-primary" data-close="guideDialog">알겠습니다</button></div></div></dialog>
+  <script>
+  /* QRCode generator © 2009 Kazuhiko Arase, MIT License. Browser adaptation from qrcode-terminal vendor code. */
+  (() => {
+  var QRMode = {
+    MODE_NUMBER :       1 << 0,
+    MODE_ALPHA_NUM :    1 << 1,
+    MODE_8BIT_BYTE :    1 << 2,
+    MODE_KANJI :        1 << 3
+};
+
+var QRErrorCorrectLevel = {
+	L : 1,
+	M : 0,
+	Q : 3,
+	H : 2
+};
+
+
+var QRMaskPattern = {
+	PATTERN000 : 0,
+	PATTERN001 : 1,
+	PATTERN010 : 2,
+	PATTERN011 : 3,
+	PATTERN100 : 4,
+	PATTERN101 : 5,
+	PATTERN110 : 6,
+	PATTERN111 : 7
+};
+
+var QRMath = {
+
+	glog : function(n) {
+	
+		if (n < 1) {
+			throw new Error("glog(" + n + ")");
+		}
+		
+		return QRMath.LOG_TABLE[n];
+	},
+	
+	gexp : function(n) {
+	
+		while (n < 0) {
+			n += 255;
+		}
+	
+		while (n >= 256) {
+			n -= 255;
+		}
+	
+		return QRMath.EXP_TABLE[n];
+	},
+	
+	EXP_TABLE : new Array(256),
+	
+	LOG_TABLE : new Array(256)
+
+};
+	
+for (var i = 0; i < 8; i++) {
+	QRMath.EXP_TABLE[i] = 1 << i;
+}
+for (var i = 8; i < 256; i++) {
+	QRMath.EXP_TABLE[i] = QRMath.EXP_TABLE[i - 4]
+		^ QRMath.EXP_TABLE[i - 5]
+		^ QRMath.EXP_TABLE[i - 6]
+		^ QRMath.EXP_TABLE[i - 8];
+}
+for (var i = 0; i < 255; i++) {
+	QRMath.LOG_TABLE[QRMath.EXP_TABLE[i] ] = i;
+}
+
+
+
+function QRPolynomial(num, shift) {
+	if (num.length === undefined) {
+		throw new Error(num.length + "/" + shift);
+	}
+
+	var offset = 0;
+
+	while (offset < num.length && num[offset] === 0) {
+		offset++;
+	}
+
+	this.num = new Array(num.length - offset + shift);
+	for (var i = 0; i < num.length - offset; i++) {
+		this.num[i] = num[i + offset];
+	}
+}
+
+QRPolynomial.prototype = {
+
+	get : function(index) {
+		return this.num[index];
+	},
+	
+	getLength : function() {
+		return this.num.length;
+	},
+	
+	multiply : function(e) {
+	
+		var num = new Array(this.getLength() + e.getLength() - 1);
+	
+		for (var i = 0; i < this.getLength(); i++) {
+			for (var j = 0; j < e.getLength(); j++) {
+				num[i + j] ^= QRMath.gexp(QRMath.glog(this.get(i) ) + QRMath.glog(e.get(j) ) );
+			}
+		}
+	
+		return new QRPolynomial(num, 0);
+	},
+	
+	mod : function(e) {
+	
+		if (this.getLength() - e.getLength() < 0) {
+			return this;
+		}
+	
+		var ratio = QRMath.glog(this.get(0) ) - QRMath.glog(e.get(0) );
+	
+		var num = new Array(this.getLength() );
+		
+		for (var i = 0; i < this.getLength(); i++) {
+			num[i] = this.get(i);
+		}
+		
+		for (var x = 0; x < e.getLength(); x++) {
+			num[x] ^= QRMath.gexp(QRMath.glog(e.get(x) ) + ratio);
+		}
+	
+		// recursive call
+		return new QRPolynomial(num, 0).mod(e);
+	}
+};
+
+
+
+function QRRSBlock(totalCount, dataCount) {
+	this.totalCount = totalCount;
+	this.dataCount  = dataCount;
+}
+
+QRRSBlock.RS_BLOCK_TABLE = [
+
+	// L
+	// M
+	// Q
+	// H
+
+	// 1
+	[1, 26, 19],
+	[1, 26, 16],
+	[1, 26, 13],
+	[1, 26, 9],
+	
+	// 2
+	[1, 44, 34],
+	[1, 44, 28],
+	[1, 44, 22],
+	[1, 44, 16],
+
+	// 3
+	[1, 70, 55],
+	[1, 70, 44],
+	[2, 35, 17],
+	[2, 35, 13],
+
+	// 4		
+	[1, 100, 80],
+	[2, 50, 32],
+	[2, 50, 24],
+	[4, 25, 9],
+	
+	// 5
+	[1, 134, 108],
+	[2, 67, 43],
+	[2, 33, 15, 2, 34, 16],
+	[2, 33, 11, 2, 34, 12],
+	
+	// 6
+	[2, 86, 68],
+	[4, 43, 27],
+	[4, 43, 19],
+	[4, 43, 15],
+	
+	// 7		
+	[2, 98, 78],
+	[4, 49, 31],
+	[2, 32, 14, 4, 33, 15],
+	[4, 39, 13, 1, 40, 14],
+	
+	// 8
+	[2, 121, 97],
+	[2, 60, 38, 2, 61, 39],
+	[4, 40, 18, 2, 41, 19],
+	[4, 40, 14, 2, 41, 15],
+	
+	// 9
+	[2, 146, 116],
+	[3, 58, 36, 2, 59, 37],
+	[4, 36, 16, 4, 37, 17],
+	[4, 36, 12, 4, 37, 13],
+	
+	// 10		
+	[2, 86, 68, 2, 87, 69],
+	[4, 69, 43, 1, 70, 44],
+	[6, 43, 19, 2, 44, 20],
+	[6, 43, 15, 2, 44, 16],
+
+	// 11
+	[4, 101, 81],
+	[1, 80, 50, 4, 81, 51],
+	[4, 50, 22, 4, 51, 23],
+	[3, 36, 12, 8, 37, 13],
+
+	// 12
+	[2, 116, 92, 2, 117, 93],
+	[6, 58, 36, 2, 59, 37],
+	[4, 46, 20, 6, 47, 21],
+	[7, 42, 14, 4, 43, 15],
+
+	// 13
+	[4, 133, 107],
+	[8, 59, 37, 1, 60, 38],
+	[8, 44, 20, 4, 45, 21],
+	[12, 33, 11, 4, 34, 12],
+
+	// 14
+	[3, 145, 115, 1, 146, 116],
+	[4, 64, 40, 5, 65, 41],
+	[11, 36, 16, 5, 37, 17],
+	[11, 36, 12, 5, 37, 13],
+
+	// 15
+	[5, 109, 87, 1, 110, 88],
+	[5, 65, 41, 5, 66, 42],
+	[5, 54, 24, 7, 55, 25],
+	[11, 36, 12],
+
+	// 16
+	[5, 122, 98, 1, 123, 99],
+	[7, 73, 45, 3, 74, 46],
+	[15, 43, 19, 2, 44, 20],
+	[3, 45, 15, 13, 46, 16],
+
+	// 17
+	[1, 135, 107, 5, 136, 108],
+	[10, 74, 46, 1, 75, 47],
+	[1, 50, 22, 15, 51, 23],
+	[2, 42, 14, 17, 43, 15],
+
+	// 18
+	[5, 150, 120, 1, 151, 121],
+	[9, 69, 43, 4, 70, 44],
+	[17, 50, 22, 1, 51, 23],
+	[2, 42, 14, 19, 43, 15],
+
+	// 19
+	[3, 141, 113, 4, 142, 114],
+	[3, 70, 44, 11, 71, 45],
+	[17, 47, 21, 4, 48, 22],
+	[9, 39, 13, 16, 40, 14],
+
+	// 20
+	[3, 135, 107, 5, 136, 108],
+	[3, 67, 41, 13, 68, 42],
+	[15, 54, 24, 5, 55, 25],
+	[15, 43, 15, 10, 44, 16],
+
+	// 21
+	[4, 144, 116, 4, 145, 117],
+	[17, 68, 42],
+	[17, 50, 22, 6, 51, 23],
+	[19, 46, 16, 6, 47, 17],
+
+	// 22
+	[2, 139, 111, 7, 140, 112],
+	[17, 74, 46],
+	[7, 54, 24, 16, 55, 25],
+	[34, 37, 13],
+
+	// 23
+	[4, 151, 121, 5, 152, 122],
+	[4, 75, 47, 14, 76, 48],
+	[11, 54, 24, 14, 55, 25],
+	[16, 45, 15, 14, 46, 16],
+
+	// 24
+	[6, 147, 117, 4, 148, 118],
+	[6, 73, 45, 14, 74, 46],
+	[11, 54, 24, 16, 55, 25],
+	[30, 46, 16, 2, 47, 17],
+
+	// 25
+	[8, 132, 106, 4, 133, 107],
+	[8, 75, 47, 13, 76, 48],
+	[7, 54, 24, 22, 55, 25],
+	[22, 45, 15, 13, 46, 16],
+
+	// 26
+	[10, 142, 114, 2, 143, 115],
+	[19, 74, 46, 4, 75, 47],
+	[28, 50, 22, 6, 51, 23],
+	[33, 46, 16, 4, 47, 17],
+
+	// 27
+	[8, 152, 122, 4, 153, 123],
+	[22, 73, 45, 3, 74, 46],
+	[8, 53, 23, 26, 54, 24],
+	[12, 45, 15, 28, 46, 16],
+
+	// 28
+	[3, 147, 117, 10, 148, 118],
+	[3, 73, 45, 23, 74, 46],
+	[4, 54, 24, 31, 55, 25],
+	[11, 45, 15, 31, 46, 16],
+
+	// 29
+	[7, 146, 116, 7, 147, 117],
+	[21, 73, 45, 7, 74, 46],
+	[1, 53, 23, 37, 54, 24],
+	[19, 45, 15, 26, 46, 16],
+
+	// 30
+	[5, 145, 115, 10, 146, 116],
+	[19, 75, 47, 10, 76, 48],
+	[15, 54, 24, 25, 55, 25],
+	[23, 45, 15, 25, 46, 16],
+
+	// 31
+	[13, 145, 115, 3, 146, 116],
+	[2, 74, 46, 29, 75, 47],
+	[42, 54, 24, 1, 55, 25],
+	[23, 45, 15, 28, 46, 16],
+
+	// 32
+	[17, 145, 115],
+	[10, 74, 46, 23, 75, 47],
+	[10, 54, 24, 35, 55, 25],
+	[19, 45, 15, 35, 46, 16],
+
+	// 33
+	[17, 145, 115, 1, 146, 116],
+	[14, 74, 46, 21, 75, 47],
+	[29, 54, 24, 19, 55, 25],
+	[11, 45, 15, 46, 46, 16],
+
+	// 34
+	[13, 145, 115, 6, 146, 116],
+	[14, 74, 46, 23, 75, 47],
+	[44, 54, 24, 7, 55, 25],
+	[59, 46, 16, 1, 47, 17],
+
+	// 35
+	[12, 151, 121, 7, 152, 122],
+	[12, 75, 47, 26, 76, 48],
+	[39, 54, 24, 14, 55, 25],
+	[22, 45, 15, 41, 46, 16],
+
+	// 36
+	[6, 151, 121, 14, 152, 122],
+	[6, 75, 47, 34, 76, 48],
+	[46, 54, 24, 10, 55, 25],
+	[2, 45, 15, 64, 46, 16],
+
+	// 37
+	[17, 152, 122, 4, 153, 123],
+	[29, 74, 46, 14, 75, 47],
+	[49, 54, 24, 10, 55, 25],
+	[24, 45, 15, 46, 46, 16],
+
+	// 38
+	[4, 152, 122, 18, 153, 123],
+	[13, 74, 46, 32, 75, 47],
+	[48, 54, 24, 14, 55, 25],
+	[42, 45, 15, 32, 46, 16],
+
+	// 39
+	[20, 147, 117, 4, 148, 118],
+	[40, 75, 47, 7, 76, 48],
+	[43, 54, 24, 22, 55, 25],
+	[10, 45, 15, 67, 46, 16],
+
+	// 40
+	[19, 148, 118, 6, 149, 119],
+	[18, 75, 47, 31, 76, 48],
+	[34, 54, 24, 34, 55, 25],
+	[20, 45, 15, 61, 46, 16]
+];
+
+QRRSBlock.getRSBlocks = function(typeNumber, errorCorrectLevel) {
+	
+	var rsBlock = QRRSBlock.getRsBlockTable(typeNumber, errorCorrectLevel);
+	
+	if (rsBlock === undefined) {
+		throw new Error("bad rs block @ typeNumber:" + typeNumber + "/errorCorrectLevel:" + errorCorrectLevel);
+	}
+
+	var length = rsBlock.length / 3;
+	
+	var list = [];
+	
+	for (var i = 0; i < length; i++) {
+
+		var count = rsBlock[i * 3 + 0];
+		var totalCount = rsBlock[i * 3 + 1];
+		var dataCount  = rsBlock[i * 3 + 2];
+
+		for (var j = 0; j < count; j++) {
+			list.push(new QRRSBlock(totalCount, dataCount) );	
+		}
+	}
+	
+	return list;
+};
+
+QRRSBlock.getRsBlockTable = function(typeNumber, errorCorrectLevel) {
+
+	switch(errorCorrectLevel) {
+	case QRErrorCorrectLevel.L :
+		return QRRSBlock.RS_BLOCK_TABLE[(typeNumber - 1) * 4 + 0];
+	case QRErrorCorrectLevel.M :
+		return QRRSBlock.RS_BLOCK_TABLE[(typeNumber - 1) * 4 + 1];
+	case QRErrorCorrectLevel.Q :
+		return QRRSBlock.RS_BLOCK_TABLE[(typeNumber - 1) * 4 + 2];
+	case QRErrorCorrectLevel.H :
+		return QRRSBlock.RS_BLOCK_TABLE[(typeNumber - 1) * 4 + 3];
+	default :
+		return undefined;
+	}
+};
+
+
+
+
+
+
+var QRUtil = {
+
+    PATTERN_POSITION_TABLE : [
+        [],
+        [6, 18],
+        [6, 22],
+        [6, 26],
+        [6, 30],
+        [6, 34],
+        [6, 22, 38],
+        [6, 24, 42],
+        [6, 26, 46],
+        [6, 28, 50],
+        [6, 30, 54],        
+        [6, 32, 58],
+        [6, 34, 62],
+        [6, 26, 46, 66],
+        [6, 26, 48, 70],
+        [6, 26, 50, 74],
+        [6, 30, 54, 78],
+        [6, 30, 56, 82],
+        [6, 30, 58, 86],
+        [6, 34, 62, 90],
+        [6, 28, 50, 72, 94],
+        [6, 26, 50, 74, 98],
+        [6, 30, 54, 78, 102],
+        [6, 28, 54, 80, 106],
+        [6, 32, 58, 84, 110],
+        [6, 30, 58, 86, 114],
+        [6, 34, 62, 90, 118],
+        [6, 26, 50, 74, 98, 122],
+        [6, 30, 54, 78, 102, 126],
+        [6, 26, 52, 78, 104, 130],
+        [6, 30, 56, 82, 108, 134],
+        [6, 34, 60, 86, 112, 138],
+        [6, 30, 58, 86, 114, 142],
+        [6, 34, 62, 90, 118, 146],
+        [6, 30, 54, 78, 102, 126, 150],
+        [6, 24, 50, 76, 102, 128, 154],
+        [6, 28, 54, 80, 106, 132, 158],
+        [6, 32, 58, 84, 110, 136, 162],
+        [6, 26, 54, 82, 110, 138, 166],
+        [6, 30, 58, 86, 114, 142, 170]
+    ],
+
+    G15 : (1 << 10) | (1 << 8) | (1 << 5) | (1 << 4) | (1 << 2) | (1 << 1) | (1 << 0),
+    G18 : (1 << 12) | (1 << 11) | (1 << 10) | (1 << 9) | (1 << 8) | (1 << 5) | (1 << 2) | (1 << 0),
+    G15_MASK : (1 << 14) | (1 << 12) | (1 << 10)    | (1 << 4) | (1 << 1),
+
+    getBCHTypeInfo : function(data) {
+        var d = data << 10;
+        while (QRUtil.getBCHDigit(d) - QRUtil.getBCHDigit(QRUtil.G15) >= 0) {
+            d ^= (QRUtil.G15 << (QRUtil.getBCHDigit(d) - QRUtil.getBCHDigit(QRUtil.G15) ) );    
+        }
+        return ( (data << 10) | d) ^ QRUtil.G15_MASK;
+    },
+
+    getBCHTypeNumber : function(data) {
+        var d = data << 12;
+        while (QRUtil.getBCHDigit(d) - QRUtil.getBCHDigit(QRUtil.G18) >= 0) {
+            d ^= (QRUtil.G18 << (QRUtil.getBCHDigit(d) - QRUtil.getBCHDigit(QRUtil.G18) ) );    
+        }
+        return (data << 12) | d;
+    },
+
+    getBCHDigit : function(data) {
+
+        var digit = 0;
+
+        while (data !== 0) {
+            digit++;
+            data >>>= 1;
+        }
+
+        return digit;
+    },
+
+    getPatternPosition : function(typeNumber) {
+        return QRUtil.PATTERN_POSITION_TABLE[typeNumber - 1];
+    },
+
+    getMask : function(maskPattern, i, j) {
+        
+        switch (maskPattern) {
+            
+        case QRMaskPattern.PATTERN000 : return (i + j) % 2 === 0;
+        case QRMaskPattern.PATTERN001 : return i % 2 === 0;
+        case QRMaskPattern.PATTERN010 : return j % 3 === 0;
+        case QRMaskPattern.PATTERN011 : return (i + j) % 3 === 0;
+        case QRMaskPattern.PATTERN100 : return (Math.floor(i / 2) + Math.floor(j / 3) ) % 2 === 0;
+        case QRMaskPattern.PATTERN101 : return (i * j) % 2 + (i * j) % 3 === 0;
+        case QRMaskPattern.PATTERN110 : return ( (i * j) % 2 + (i * j) % 3) % 2 === 0;
+        case QRMaskPattern.PATTERN111 : return ( (i * j) % 3 + (i + j) % 2) % 2 === 0;
+
+        default :
+            throw new Error("bad maskPattern:" + maskPattern);
+        }
+    },
+
+    getErrorCorrectPolynomial : function(errorCorrectLength) {
+
+        var a = new QRPolynomial([1], 0);
+
+        for (var i = 0; i < errorCorrectLength; i++) {
+            a = a.multiply(new QRPolynomial([1, QRMath.gexp(i)], 0) );
+        }
+
+        return a;
+    },
+
+    getLengthInBits : function(mode, type) {
+
+        if (1 <= type && type < 10) {
+
+            // 1 - 9
+
+            switch(mode) {
+            case QRMode.MODE_NUMBER     : return 10;
+            case QRMode.MODE_ALPHA_NUM  : return 9;
+            case QRMode.MODE_8BIT_BYTE  : return 8;
+            case QRMode.MODE_KANJI      : return 8;
+            default :
+                throw new Error("mode:" + mode);
+            }
+
+        } else if (type < 27) {
+
+            // 10 - 26
+
+            switch(mode) {
+            case QRMode.MODE_NUMBER     : return 12;
+            case QRMode.MODE_ALPHA_NUM  : return 11;
+            case QRMode.MODE_8BIT_BYTE  : return 16;
+            case QRMode.MODE_KANJI      : return 10;
+            default :
+                throw new Error("mode:" + mode);
+            }
+
+        } else if (type < 41) {
+
+            // 27 - 40
+
+            switch(mode) {
+            case QRMode.MODE_NUMBER     : return 14;
+            case QRMode.MODE_ALPHA_NUM  : return 13;
+            case QRMode.MODE_8BIT_BYTE  : return 16;
+            case QRMode.MODE_KANJI      : return 12;
+            default :
+                throw new Error("mode:" + mode);
+            }
+
+        } else {
+            throw new Error("type:" + type);
+        }
+    },
+
+    getLostPoint : function(qrCode) {
+        
+        var moduleCount = qrCode.getModuleCount();
+        var lostPoint = 0;
+        var row = 0; 
+        var col = 0;
+
+        
+        // LEVEL1
+        
+        for (row = 0; row < moduleCount; row++) {
+
+            for (col = 0; col < moduleCount; col++) {
+
+                var sameCount = 0;
+                var dark = qrCode.isDark(row, col);
+
+                for (var r = -1; r <= 1; r++) {
+
+                    if (row + r < 0 || moduleCount <= row + r) {
+                        continue;
+                    }
+
+                    for (var c = -1; c <= 1; c++) {
+
+                        if (col + c < 0 || moduleCount <= col + c) {
+                            continue;
+                        }
+
+                        if (r === 0 && c === 0) {
+                            continue;
+                        }
+
+                        if (dark === qrCode.isDark(row + r, col + c) ) {
+                            sameCount++;
+                        }
+                    }
+                }
+
+                if (sameCount > 5) {
+                    lostPoint += (3 + sameCount - 5);
+                }
+            }
+        }
+
+        // LEVEL2
+
+        for (row = 0; row < moduleCount - 1; row++) {
+            for (col = 0; col < moduleCount - 1; col++) {
+                var count = 0;
+                if (qrCode.isDark(row,     col    ) ) count++;
+                if (qrCode.isDark(row + 1, col    ) ) count++;
+                if (qrCode.isDark(row,     col + 1) ) count++;
+                if (qrCode.isDark(row + 1, col + 1) ) count++;
+                if (count === 0 || count === 4) {
+                    lostPoint += 3;
+                }
+            }
+        }
+
+        // LEVEL3
+
+        for (row = 0; row < moduleCount; row++) {
+            for (col = 0; col < moduleCount - 6; col++) {
+                if (qrCode.isDark(row, col) && 
+                        !qrCode.isDark(row, col + 1) && 
+                         qrCode.isDark(row, col + 2) && 
+                         qrCode.isDark(row, col + 3) && 
+                         qrCode.isDark(row, col + 4) && 
+                        !qrCode.isDark(row, col + 5) && 
+                         qrCode.isDark(row, col + 6) ) {
+                    lostPoint += 40;
+                }
+            }
+        }
+
+        for (col = 0; col < moduleCount; col++) {
+            for (row = 0; row < moduleCount - 6; row++) {
+                if (qrCode.isDark(row, col) &&
+                        !qrCode.isDark(row + 1, col) &&
+                         qrCode.isDark(row + 2, col) &&
+                         qrCode.isDark(row + 3, col) &&
+                         qrCode.isDark(row + 4, col) &&
+                        !qrCode.isDark(row + 5, col) &&
+                         qrCode.isDark(row + 6, col) ) {
+                    lostPoint += 40;
+                }
+            }
+        }
+
+        // LEVEL4
+        
+        var darkCount = 0;
+
+        for (col = 0; col < moduleCount; col++) {
+            for (row = 0; row < moduleCount; row++) {
+                if (qrCode.isDark(row, col) ) {
+                    darkCount++;
+                }
+            }
+        }
+        
+        var ratio = Math.abs(100 * darkCount / moduleCount / moduleCount - 50) / 5;
+        lostPoint += ratio * 10;
+
+        return lostPoint;       
+    }
+
+};
+
+
+function QRBitBuffer() {
+	this.buffer = [];
+	this.length = 0;
+}
+
+QRBitBuffer.prototype = {
+
+	get : function(index) {
+		var bufIndex = Math.floor(index / 8);
+		return ( (this.buffer[bufIndex] >>> (7 - index % 8) ) & 1) == 1;
+	},
+	
+	put : function(num, length) {
+		for (var i = 0; i < length; i++) {
+			this.putBit( ( (num >>> (length - i - 1) ) & 1) == 1);
+		}
+	},
+	
+	getLengthInBits : function() {
+		return this.length;
+	},
+	
+	putBit : function(bit) {
+	
+		var bufIndex = Math.floor(this.length / 8);
+		if (this.buffer.length <= bufIndex) {
+			this.buffer.push(0);
+		}
+	
+		if (bit) {
+			this.buffer[bufIndex] |= (0x80 >>> (this.length % 8) );
+		}
+	
+		this.length++;
+	}
+};
+
+
+
+function QR8bitByte(data) {
+	this.mode = QRMode.MODE_8BIT_BYTE;
+	this.data = data;
+}
+
+QR8bitByte.prototype = {
+
+	getLength : function() {
+		return this.data.length;
+	},
+	
+	write : function(buffer) {
+		for (var i = 0; i < this.data.length; i++) {
+			// not JIS ...
+			buffer.put(this.data.charCodeAt(i), 8);
+		}
+	}
+};
+
+
+//---------------------------------------------------------------------
+// QRCode for JavaScript
+//
+// Copyright (c) 2009 Kazuhiko Arase
+//
+// URL: http://www.d-project.com/
+//
+// Licensed under the MIT license:
+//   http://www.opensource.org/licenses/mit-license.php
+//
+// The word "QR Code" is registered trademark of 
+// DENSO WAVE INCORPORATED
+//   http://www.denso-wave.com/qrcode/faqpatent-e.html
+//
+//---------------------------------------------------------------------
+// Modified to work in node for this project (and some refactoring)
+//---------------------------------------------------------------------
+
+
+
+
+
+
+function QRCode(typeNumber, errorCorrectLevel) {
+	this.typeNumber = typeNumber;
+	this.errorCorrectLevel = errorCorrectLevel;
+	this.modules = null;
+	this.moduleCount = 0;
+	this.dataCache = null;
+	this.dataList = [];
+}
+
+QRCode.prototype = {
+	
+	addData : function(data) {
+		var newData = new QR8bitByte(data);
+		this.dataList.push(newData);
+		this.dataCache = null;
+	},
+	
+	isDark : function(row, col) {
+		if (row < 0 || this.moduleCount <= row || col < 0 || this.moduleCount <= col) {
+			throw new Error(row + "," + col);
+		}
+		return this.modules[row][col];
+	},
+
+	getModuleCount : function() {
+		return this.moduleCount;
+	},
+	
+	make : function() {
+		// Calculate automatically typeNumber if provided is < 1
+		if (this.typeNumber < 1 ){
+			var typeNumber = 1;
+			for (typeNumber = 1; typeNumber < 40; typeNumber++) {
+				var rsBlocks = QRRSBlock.getRSBlocks(typeNumber, this.errorCorrectLevel);
+
+				var buffer = new QRBitBuffer();
+				var totalDataCount = 0;
+				for (var i = 0; i < rsBlocks.length; i++) {
+					totalDataCount += rsBlocks[i].dataCount;
+				}
+
+				for (var x = 0; x < this.dataList.length; x++) {
+					var data = this.dataList[x];
+					buffer.put(data.mode, 4);
+					buffer.put(data.getLength(), QRUtil.getLengthInBits(data.mode, typeNumber) );
+					data.write(buffer);
+				}
+				if (buffer.getLengthInBits() <= totalDataCount * 8)
+					break;
+			}
+			this.typeNumber = typeNumber;
+		}
+		this.makeImpl(false, this.getBestMaskPattern() );
+	},
+	
+	makeImpl : function(test, maskPattern) {
+		
+		this.moduleCount = this.typeNumber * 4 + 17;
+		this.modules = new Array(this.moduleCount);
+		
+		for (var row = 0; row < this.moduleCount; row++) {
+			
+			this.modules[row] = new Array(this.moduleCount);
+			
+			for (var col = 0; col < this.moduleCount; col++) {
+				this.modules[row][col] = null;//(col + row) % 3;
+			}
+		}
+	
+		this.setupPositionProbePattern(0, 0);
+		this.setupPositionProbePattern(this.moduleCount - 7, 0);
+		this.setupPositionProbePattern(0, this.moduleCount - 7);
+		this.setupPositionAdjustPattern();
+		this.setupTimingPattern();
+		this.setupTypeInfo(test, maskPattern);
+		
+		if (this.typeNumber >= 7) {
+			this.setupTypeNumber(test);
+		}
+	
+		if (this.dataCache === null) {
+			this.dataCache = QRCode.createData(this.typeNumber, this.errorCorrectLevel, this.dataList);
+		}
+	
+		this.mapData(this.dataCache, maskPattern);
+	},
+
+	setupPositionProbePattern : function(row, col)  {
+		
+		for (var r = -1; r <= 7; r++) {
+			
+			if (row + r <= -1 || this.moduleCount <= row + r) continue;
+			
+			for (var c = -1; c <= 7; c++) {
+				
+				if (col + c <= -1 || this.moduleCount <= col + c) continue;
+				
+				if ( (0 <= r && r <= 6 && (c === 0 || c === 6) ) || 
+                     (0 <= c && c <= 6 && (r === 0 || r === 6) ) || 
+                     (2 <= r && r <= 4 && 2 <= c && c <= 4) ) {
+					this.modules[row + r][col + c] = true;
+				} else {
+					this.modules[row + r][col + c] = false;
+				}
+			}		
+		}		
+	},
+	
+	getBestMaskPattern : function() {
+	
+		var minLostPoint = 0;
+		var pattern = 0;
+	
+		for (var i = 0; i < 8; i++) {
+			
+			this.makeImpl(true, i);
+	
+			var lostPoint = QRUtil.getLostPoint(this);
+	
+			if (i === 0 || minLostPoint >  lostPoint) {
+				minLostPoint = lostPoint;
+				pattern = i;
+			}
+		}
+	
+		return pattern;
+	},
+	
+	createMovieClip : function(target_mc, instance_name, depth) {
+	
+		var qr_mc = target_mc.createEmptyMovieClip(instance_name, depth);
+		var cs = 1;
+	
+		this.make();
+
+		for (var row = 0; row < this.modules.length; row++) {
+			
+			var y = row * cs;
+			
+			for (var col = 0; col < this.modules[row].length; col++) {
+	
+				var x = col * cs;
+				var dark = this.modules[row][col];
+			
+				if (dark) {
+					qr_mc.beginFill(0, 100);
+					qr_mc.moveTo(x, y);
+					qr_mc.lineTo(x + cs, y);
+					qr_mc.lineTo(x + cs, y + cs);
+					qr_mc.lineTo(x, y + cs);
+					qr_mc.endFill();
+				}
+			}
+		}
+		
+		return qr_mc;
+	},
+
+	setupTimingPattern : function() {
+		
+		for (var r = 8; r < this.moduleCount - 8; r++) {
+			if (this.modules[r][6] !== null) {
+				continue;
+			}
+			this.modules[r][6] = (r % 2 === 0);
+		}
+	
+		for (var c = 8; c < this.moduleCount - 8; c++) {
+			if (this.modules[6][c] !== null) {
+				continue;
+			}
+			this.modules[6][c] = (c % 2 === 0);
+		}
+	},
+	
+	setupPositionAdjustPattern : function() {
+	
+		var pos = QRUtil.getPatternPosition(this.typeNumber);
+		
+		for (var i = 0; i < pos.length; i++) {
+		
+			for (var j = 0; j < pos.length; j++) {
+			
+				var row = pos[i];
+				var col = pos[j];
+				
+				if (this.modules[row][col] !== null) {
+					continue;
+				}
+				
+				for (var r = -2; r <= 2; r++) {
+				
+					for (var c = -2; c <= 2; c++) {
+					
+						if (Math.abs(r) === 2 || 
+                            Math.abs(c) === 2 ||
+                            (r === 0 && c === 0) ) {
+							this.modules[row + r][col + c] = true;
+						} else {
+							this.modules[row + r][col + c] = false;
+						}
+					}
+				}
+			}
+		}
+	},
+	
+	setupTypeNumber : function(test) {
+	
+		var bits = QRUtil.getBCHTypeNumber(this.typeNumber);
+        var mod;
+	
+		for (var i = 0; i < 18; i++) {
+			mod = (!test && ( (bits >> i) & 1) === 1);
+			this.modules[Math.floor(i / 3)][i % 3 + this.moduleCount - 8 - 3] = mod;
+		}
+	
+		for (var x = 0; x < 18; x++) {
+			mod = (!test && ( (bits >> x) & 1) === 1);
+			this.modules[x % 3 + this.moduleCount - 8 - 3][Math.floor(x / 3)] = mod;
+		}
+	},
+	
+	setupTypeInfo : function(test, maskPattern) {
+	
+		var data = (this.errorCorrectLevel << 3) | maskPattern;
+		var bits = QRUtil.getBCHTypeInfo(data);
+        var mod;
+	
+		// vertical		
+		for (var v = 0; v < 15; v++) {
+	
+			mod = (!test && ( (bits >> v) & 1) === 1);
+	
+			if (v < 6) {
+				this.modules[v][8] = mod;
+			} else if (v < 8) {
+				this.modules[v + 1][8] = mod;
+			} else {
+				this.modules[this.moduleCount - 15 + v][8] = mod;
+			}
+		}
+	
+		// horizontal
+		for (var h = 0; h < 15; h++) {
+	
+			mod = (!test && ( (bits >> h) & 1) === 1);
+			
+			if (h < 8) {
+				this.modules[8][this.moduleCount - h - 1] = mod;
+			} else if (h < 9) {
+				this.modules[8][15 - h - 1 + 1] = mod;
+			} else {
+				this.modules[8][15 - h - 1] = mod;
+			}
+		}
+	
+		// fixed module
+		this.modules[this.moduleCount - 8][8] = (!test);
+	
+	},
+	
+	mapData : function(data, maskPattern) {
+		
+		var inc = -1;
+		var row = this.moduleCount - 1;
+		var bitIndex = 7;
+		var byteIndex = 0;
+		
+		for (var col = this.moduleCount - 1; col > 0; col -= 2) {
+	
+			if (col === 6) col--;
+	
+			while (true) {
+	
+				for (var c = 0; c < 2; c++) {
+					
+					if (this.modules[row][col - c] === null) {
+						
+						var dark = false;
+	
+						if (byteIndex < data.length) {
+							dark = ( ( (data[byteIndex] >>> bitIndex) & 1) === 1);
+						}
+	
+						var mask = QRUtil.getMask(maskPattern, row, col - c);
+	
+						if (mask) {
+							dark = !dark;
+						}
+						
+						this.modules[row][col - c] = dark;
+						bitIndex--;
+	
+						if (bitIndex === -1) {
+							byteIndex++;
+							bitIndex = 7;
+						}
+					}
+				}
+								
+				row += inc;
+	
+				if (row < 0 || this.moduleCount <= row) {
+					row -= inc;
+					inc = -inc;
+					break;
+				}
+			}
+		}
+		
+	}
+
+};
+
+QRCode.PAD0 = 0xEC;
+QRCode.PAD1 = 0x11;
+
+QRCode.createData = function(typeNumber, errorCorrectLevel, dataList) {
+	
+	var rsBlocks = QRRSBlock.getRSBlocks(typeNumber, errorCorrectLevel);
+	
+	var buffer = new QRBitBuffer();
+	
+	for (var i = 0; i < dataList.length; i++) {
+		var data = dataList[i];
+		buffer.put(data.mode, 4);
+		buffer.put(data.getLength(), QRUtil.getLengthInBits(data.mode, typeNumber) );
+		data.write(buffer);
+	}
+
+	// calc num max data.
+	var totalDataCount = 0;
+	for (var x = 0; x < rsBlocks.length; x++) {
+		totalDataCount += rsBlocks[x].dataCount;
+	}
+
+	if (buffer.getLengthInBits() > totalDataCount * 8) {
+		throw new Error("code length overflow. (" + 
+            buffer.getLengthInBits() + 
+            ">" +  
+            totalDataCount * 8 + 
+            ")");
+	}
+
+	// end code
+	if (buffer.getLengthInBits() + 4 <= totalDataCount * 8) {
+		buffer.put(0, 4);
+	}
+
+	// padding
+	while (buffer.getLengthInBits() % 8 !== 0) {
+		buffer.putBit(false);
+	}
+
+	// padding
+	while (true) {
+		
+		if (buffer.getLengthInBits() >= totalDataCount * 8) {
+			break;
+		}
+		buffer.put(QRCode.PAD0, 8);
+		
+		if (buffer.getLengthInBits() >= totalDataCount * 8) {
+			break;
+		}
+		buffer.put(QRCode.PAD1, 8);
+	}
+
+	return QRCode.createBytes(buffer, rsBlocks);
+};
+
+QRCode.createBytes = function(buffer, rsBlocks) {
+
+	var offset = 0;
+	
+	var maxDcCount = 0;
+	var maxEcCount = 0;
+	
+	var dcdata = new Array(rsBlocks.length);
+	var ecdata = new Array(rsBlocks.length);
+	
+	for (var r = 0; r < rsBlocks.length; r++) {
+
+		var dcCount = rsBlocks[r].dataCount;
+		var ecCount = rsBlocks[r].totalCount - dcCount;
+
+		maxDcCount = Math.max(maxDcCount, dcCount);
+		maxEcCount = Math.max(maxEcCount, ecCount);
+		
+		dcdata[r] = new Array(dcCount);
+		
+		for (var i = 0; i < dcdata[r].length; i++) {
+			dcdata[r][i] = 0xff & buffer.buffer[i + offset];
+		}
+		offset += dcCount;
+		
+		var rsPoly = QRUtil.getErrorCorrectPolynomial(ecCount);
+		var rawPoly = new QRPolynomial(dcdata[r], rsPoly.getLength() - 1);
+
+		var modPoly = rawPoly.mod(rsPoly);
+		ecdata[r] = new Array(rsPoly.getLength() - 1);
+		for (var x = 0; x < ecdata[r].length; x++) {
+            var modIndex = x + modPoly.getLength() - ecdata[r].length;
+			ecdata[r][x] = (modIndex >= 0)? modPoly.get(modIndex) : 0;
+		}
+
+	}
+	
+	var totalCodeCount = 0;
+	for (var y = 0; y < rsBlocks.length; y++) {
+		totalCodeCount += rsBlocks[y].totalCount;
+	}
+
+	var data = new Array(totalCodeCount);
+	var index = 0;
+
+	for (var z = 0; z < maxDcCount; z++) {
+		for (var s = 0; s < rsBlocks.length; s++) {
+			if (z < dcdata[s].length) {
+				data[index++] = dcdata[s][z];
+			}
+		}
+	}
+
+	for (var xx = 0; xx < maxEcCount; xx++) {
+		for (var t = 0; t < rsBlocks.length; t++) {
+			if (xx < ecdata[t].length) {
+				data[index++] = ecdata[t][xx];
+			}
+		}
+	}
+
+	return data;
+
+};
+
+
+  window.PortalQR = QRCode;
+  })();
+  </script>
   <script>
   'use strict';
   // 이 파일을 GitHub Pages에 그대로 업로드하세요. GitHub 토큰은 필요하지 않습니다.
@@ -103,7 +1339,7 @@
   const CACHE_KEY = 'my-webapp-studio-public-cache-v1';
   const CATEGORIES = ['AI·SW','과학','국어·한자','수학','사회','예체능','기타'];
   const META = {
-    'ai-ethics': {title:'추천 알고리즘과 AI 윤리',description:'추천 알고리즘의 원리와 윤리를 살펴보는 교육용 웹앱',category:'AI·SW'},
+    'ai-ethics': {title:'추천 알고리즘과 AI 윤리',description:'학생용·교사용·결과 대시보드를 한 저장소에서 실행',category:'AI·SW',subApps:[{label:'교사용',path:'teacher.html'},{label:'대시보드',path:'dashboard.html'}]},
     'Double-slit-experiment': {title:'이중슬릿 실험 시뮬레이터',description:'관측과 간섭 현상을 살펴보는 과학 시뮬레이터',category:'과학'}
   };
   const $ = id => document.getElementById(id);
@@ -122,27 +1358,47 @@
       const base=(r.name.toLowerCase()===`${saved.owner.toLowerCase()}.github.io`)?`https://${saved.owner}.github.io/`:`https://${saved.owner}.github.io/${encodeURIComponent(r.name)}/`;
       const home=validUrl(r.homepage);
       const site=typeof ed.site==='string'?validUrl(ed.site):(r.has_pages?(home||base):'');
-      return {id,type:'github',title:ed.title||meta.title||r.name,description:ed.description??meta.description??r.description??'설명을 등록해 보세요.',category:ed.category||meta.category||inferCategory(r),repo:validUrl(r.html_url)||`https://github.com/${encodeURIComponent(saved.owner)}/${encodeURIComponent(r.name)}`,site,pages:!!r.has_pages,updated:r.pushed_at||r.updated_at||r.created_at||'',rawName:r.name};
+      return {id,type:'github',title:ed.title||meta.title||r.name,description:ed.description??meta.description??r.description??'설명을 등록해 보세요.',category:ed.category||meta.category||inferCategory(r),repo:validUrl(r.html_url)||`https://github.com/${encodeURIComponent(saved.owner)}/${encodeURIComponent(r.name)}`,site,pages:!!r.has_pages,updated:r.pushed_at||r.updated_at||r.created_at||'',rawName:r.name,subApps:Array.isArray(ed.subApps)?ed.subApps:(meta.subApps||[])};
     });
     const ids=new Set(repos.map(r=>r.id));
-    const manual=saved.manual.filter(p=>p&&typeof p.id==='string'&&!ids.has(p.id)).map(p=>({id:p.id,type:'manual',title:String(p.title||'이름 없는 웹앱'),description:String(p.description||'내가 직접 등록한 바로가기입니다.'),category:CATEGORIES.includes(p.category)?p.category:'기타',repo:validUrl(p.repo),site:validUrl(p.site),pages:!!validUrl(p.site),updated:p.updated||'',rawName:String(p.title||'')}));
+    const manual=saved.manual.filter(p=>p&&typeof p.id==='string'&&!ids.has(p.id)).map(p=>({id:p.id,type:'manual',title:String(p.title||'이름 없는 웹앱'),description:String(p.description||'내가 직접 등록한 바로가기입니다.'),category:CATEGORIES.includes(p.category)?p.category:'기타',repo:validUrl(p.repo),site:validUrl(p.site),pages:!!validUrl(p.site),updated:p.updated||'',rawName:String(p.title||''),subApps:Array.isArray(p.subApps)?p.subApps:[]}));
     return [...repos,...manual].filter(p=>!saved.hidden.includes(p.id));
   }
   function filteredProjects(all){
     let p=all.filter(x=>state.filter!=='pages'||x.pages).filter(x=>state.filter!=='favorites'||saved.favorites.includes(x.id));
     if(state.category!=='all')p=p.filter(x=>x.category===state.category);
-    const search=state.search.trim().toLocaleLowerCase();if(search)p=p.filter(x=>`${x.title} ${x.description} ${x.category} ${x.rawName}`.toLocaleLowerCase().includes(search));
+    const search=state.search.trim().toLocaleLowerCase();if(search)p=p.filter(x=>`${x.title} ${x.description} ${x.category} ${x.rawName} ${(x.subApps||[]).map(a=>a.label).join(' ')}`.toLocaleLowerCase().includes(search));
     p.sort((a,b)=>state.sort==='name'?a.title.localeCompare(b.title,'ko'):state.sort==='oldest'?String(a.updated).localeCompare(String(b.updated)):String(b.updated).localeCompare(String(a.updated)));
     return p;
   }
   function dateLabel(s){if(!s)return '직접 등록';let d=new Date(s);return Number.isNaN(d.getTime())?'수정 날짜 없음':`${d.getFullYear()}.${String(d.getMonth()+1).padStart(2,'0')}.${String(d.getDate()).padStart(2,'0')} 수정`;}
   function visualType(category){return {'AI·SW':['','brain'],'과학':['science','science'],'국어·한자':['korean','book'],'수학':['math','math'],'사회':['social','globe'],'예체능':['arts','arts'],'기타':['other','package']}[category]||['other','package'];}
+  function projectBase(p){
+    if(p.type==='github')return p.rawName.toLowerCase()===`${saved.owner.toLowerCase()}.github.io`?`https://${saved.owner}.github.io/`:`https://${saved.owner}.github.io/${encodeURIComponent(p.rawName)}/`;
+    if(!p.site)return '';
+    try{return new URL('./',p.site).href}catch{return ''}
+  }
+  function resolveAppUrl(p,path){
+    if(typeof path!=='string'||!path.trim())return '';
+    if(validUrl(path))return validUrl(path);
+    // Relative HTML paths belong to the same repository, not a new repository.
+    if(path.startsWith('/')||path.includes('..')||/^[a-z][a-z0-9+.-]*:/i.test(path))return '';
+    try{return validUrl(new URL(path.trim(),projectBase(p)).href)}catch{return ''}
+  }
+  function appLinks(p){
+    const links=[];
+    if(p.site)links.push({label:p.rawName==='ai-ethics'?'학생용':'기본 웹앱',url:p.site});
+    for(const l of p.subApps||[]){if(!l||!l.label)continue;const url=resolveAppUrl(p,l.path);if(url)links.push({label:String(l.label),url});}
+    return links;
+  }
   function card(p){
     const [klass,ico]=visualType(p.category),starred=saved.favorites.includes(p.id);
-    const live=p.site?`<a class="card-action" href="${escapeHtml(p.site)}" target="_blank" rel="noopener noreferrer">웹앱 실행 ${icon('external')}</a>`:`<span class="card-action disabled" title="Pages 배포 주소가 없습니다">실행 주소 없음</span>`;
-    const source=p.repo?`<a class="code-action" href="${escapeHtml(p.repo)}" target="_blank" rel="noopener noreferrer" aria-label="${escapeHtml(p.title)} 소스코드 보기" title="소스코드 보기">${icon('github')}</a>`:'';
-    return `<article class="app-card" data-id="${escapeHtml(p.id)}"><div class="card-visual ${klass}"><div class="visual-icon">${icon(ico)}</div><div class="card-top-actions"><button type="button" class="mini-btn ${starred?'starred':''}" data-action="favorite" data-id="${escapeHtml(p.id)}" title="즐겨찾기 ${starred?'해제':'등록'}" aria-label="즐겨찾기 ${starred?'해제':'등록'}">${icon('star')}</button><button type="button" class="mini-btn" data-action="edit" data-id="${escapeHtml(p.id)}" title="웹앱 정보 편집" aria-label="웹앱 정보 편집">${icon('edit')}</button><button type="button" class="mini-btn" data-action="hide" data-id="${escapeHtml(p.id)}" title="목록에서 숨기기" aria-label="목록에서 숨기기">${icon('eyeoff')}</button></div></div><div class="card-body"><div class="card-kicker"><span class="label">${escapeHtml(p.category)}</span><span class="label ${p.pages?'live':'notlive'}">${p.type==='manual'?'직접 등록':p.pages?'Pages 설정됨':'Pages 미설정'}</span></div><h3 class="card-title" title="${escapeHtml(p.title)}">${escapeHtml(p.title)}</h3><p class="card-desc">${escapeHtml(p.description)}</p><div class="card-updated">${icon('clock')} ${escapeHtml(dateLabel(p.updated))}</div></div><div class="card-footer">${live}${source}</div></article>`;
+    const links=appLinks(p);
+    const launches=links.length?links.map((link,i)=>`<div class="launch-unit"><div class="launch-caption"><span class="launch-dot"></span>${escapeHtml(link.label)}</div><a class="card-action" href="${escapeHtml(link.url)}" target="_blank" rel="noopener noreferrer">${icon('external')} 웹앱 실행</a><button class="qr-action" type="button" data-action="qr" data-id="${escapeHtml(p.id)}" data-index="${i}">${icon('qr')} QR코드 만들기</button></div>`).join(''):`<div class="launch-unit"><span class="card-action disabled">실행 주소 없음</span><span class="qr-action disabled">QR코드 생성 불가</span></div>`;
+    const source=p.repo?`<a class="repo-link" href="${escapeHtml(p.repo)}" target="_blank" rel="noopener noreferrer">${icon('github')} GitHub 소스코드 보기 ${icon('external')}</a>`:'';
+    return `<article class="app-card" data-id="${escapeHtml(p.id)}"><div class="card-visual ${klass}"><div class="visual-icon">${icon(ico)}</div><div class="card-top-actions"><button type="button" class="mini-btn ${starred?'starred':''}" data-action="favorite" data-id="${escapeHtml(p.id)}" title="즐겨찾기 ${starred?'해제':'등록'}" aria-label="즐겨찾기 ${starred?'해제':'등록'}">${icon('star')}</button><button type="button" class="mini-btn" data-action="edit" data-id="${escapeHtml(p.id)}" title="웹앱 정보 편집" aria-label="웹앱 정보 편집">${icon('edit')}</button><button type="button" class="mini-btn" data-action="hide" data-id="${escapeHtml(p.id)}" title="목록에서 숨기기" aria-label="목록에서 숨기기">${icon('eyeoff')}</button></div></div><div class="card-body"><div class="card-kicker"><span class="label">${escapeHtml(p.category)}</span><span class="label ${p.pages?'live':'notlive'}">${p.type==='manual'?'직접 등록':p.pages?'Pages 설정됨':'Pages 미설정'}</span>${links.length>1?`<span class="label">${links.length}개 실행 페이지</span>`:''}</div><h3 class="card-title" title="${escapeHtml(p.title)}">${escapeHtml(p.title)}</h3><p class="card-desc">${escapeHtml(p.description)}</p><div class="card-updated">${icon('clock')} ${escapeHtml(dateLabel(p.updated))}</div></div><div class="launch-area">${launches}${source}</div></article>`;
   }
+
   function setText(id,value){$(id).textContent=String(value)}
   function updateCategories(all){
     const available=CATEGORIES.filter(c=>all.some(p=>p.category===c));if(state.category!=='all'&&!available.includes(state.category))state.category='all';
@@ -188,21 +1444,59 @@
   }
   function openDialog(id){const d=$(id);if(typeof d.showModal==='function')d.showModal();else d.setAttribute('open','');}
   function closeDialog(id){const d=$(id);if(typeof d.close==='function')d.close();else d.removeAttribute('open');}
-  function openEditor(p=null){state.editId=p?.id||null;$('editorForm').reset();setText('editorTitle',p?'웹앱 정보 수정':'웹앱 직접 추가');setText('editorSubtitle',p&&p.type==='github'?'GitHub 원본은 그대로 두고, 이 브라우저에서 보이는 정보를 수정합니다.':'직접 등록한 앱은 이 브라우저에서만 보입니다.');$('fieldTitle').value=p?.title||'';$('fieldDescription').value=p?.description||'';$('fieldCategory').value=p?.category||'기타';$('fieldSite').value=p?.site||'';$('fieldRepo').value=p?.repo||'';$('repoField').hidden=!!p&&p.type==='github';$('deleteManual').hidden=!p||p.type!=='manual';setText('siteHint',p?.type==='github'?'배포 주소가 기본값과 다르면 여기에 정확한 URL을 등록하세요.':'공개 또는 비공개 작업물의 웹앱 실행 주소를 등록하세요.');openDialog('editorDialog');}
-  function handleEditSave(e){e.preventDefault();const title=$('fieldTitle').value.trim(),category=$('fieldCategory').value,description=$('fieldDescription').value.trim(),site=$('fieldSite').value.trim(),repo=$('fieldRepo').value.trim();if(!title)return alert('웹앱 이름을 입력해 주세요.');if(site&&!validUrl(site))return alert('웹앱 주소는 https:// 또는 http://로 시작해야 합니다.');if(repo&&!validUrl(repo))return alert('소스코드 주소를 확인해 주세요.');if(state.editId?.startsWith('github:')){saved.edits[state.editId]={title,description,category,site:site||''};}else if(state.editId){const idx=saved.manual.findIndex(p=>p.id===state.editId);if(idx>=0)saved.manual[idx]={...saved.manual[idx],title,description,category,site,repo,updated:new Date().toISOString()};}else{const id='manual:'+Date.now().toString(36)+'-'+Math.random().toString(36).slice(2,8);saved.manual.push({id,title,description,category,site,repo,updated:new Date().toISOString()});state.filter='all';}persist();closeDialog('editorDialog');render();}
+  function openEditor(p=null){state.editId=p?.id||null;$('editorForm').reset();setText('editorTitle',p?'웹앱 정보 수정':'웹앱 직접 추가');setText('editorSubtitle',p&&p.type==='github'?'GitHub 원본은 그대로 두고, 이 브라우저에서 보이는 정보를 수정합니다.':'직접 등록한 앱은 이 브라우저에서만 보입니다.');$('fieldTitle').value=p?.title||'';$('fieldDescription').value=p?.description||'';$('fieldCategory').value=p?.category||'기타';$('fieldSite').value=p?.site||'';$('fieldSubApps').value=(p?.subApps||[]).map(a=>`${a.label} | ${a.path}`).join('\n');$('fieldRepo').value=p?.repo||'';$('repoField').hidden=!!p&&p.type==='github';$('deleteManual').hidden=!p||p.type!=='manual';setText('siteHint',p?.type==='github'?'배포 주소가 기본값과 다르면 여기에 정확한 URL을 등록하세요.':'공개 또는 비공개 작업물의 웹앱 실행 주소를 등록하세요.');openDialog('editorDialog');}
+  function parseSubApps(value){
+    const lines=value.split(/\r?\n/).map(s=>s.trim()).filter(Boolean);
+    if(lines.length>20)throw new Error('추가 웹앱은 최대 20개까지 등록할 수 있습니다.');
+    return lines.map((line,i)=>{const at=line.indexOf('|');if(at<1||at===line.length-1)throw new Error(`${i+1}번째 줄은 이름 | 파일명 형식으로 입력해 주세요.`);const label=line.slice(0,at).trim(),path=line.slice(at+1).trim();if(!label||!path)throw new Error(`${i+1}번째 줄의 이름이나 주소가 비어 있습니다.`);if(path.startsWith('/')||path.includes('..')||(/^[a-z][a-z0-9+.-]*:/i.test(path)&&!validUrl(path)))throw new Error(`${i+1}번째 줄의 실행 주소를 확인해 주세요.`);return {label:label.slice(0,45),path};});
+  }
+  function handleEditSave(e){
+    e.preventDefault();const title=$('fieldTitle').value.trim(),category=$('fieldCategory').value,description=$('fieldDescription').value.trim(),site=$('fieldSite').value.trim(),repo=$('fieldRepo').value.trim();
+    if(!title)return alert('웹앱 이름을 입력해 주세요.');if(site&&!validUrl(site))return alert('웹앱 주소는 https:// 또는 http://로 시작해야 합니다.');if(repo&&!validUrl(repo))return alert('소스코드 주소를 확인해 주세요.');
+    let subApps;try{subApps=parseSubApps($('fieldSubApps').value)}catch(err){return alert(err.message)}
+    if(state.editId?.startsWith('github:')){saved.edits[state.editId]={...saved.edits[state.editId],title,description,category,site:site||'',subApps};}
+    else if(state.editId){const idx=saved.manual.findIndex(p=>p.id===state.editId);if(idx>=0)saved.manual[idx]={...saved.manual[idx],title,description,category,site,repo,subApps,updated:new Date().toISOString()};}
+    else{const id='manual:'+Date.now().toString(36)+'-'+Math.random().toString(36).slice(2,8);saved.manual.push({id,title,description,category,site,repo,subApps,updated:new Date().toISOString()});state.filter='all';}
+    persist();closeDialog('editorDialog');render();
+  }
+
   function toggleFavorite(id){saved.favorites=saved.favorites.includes(id)?saved.favorites.filter(x=>x!==id):[...saved.favorites,id];persist();render()}
   function hideProject(id){const p=buildProjects().find(p=>p.id===id);if(!p)return;if(confirm(`“${p.title}” 프로젝트를 대시보드에서 숨기시겠습니까?\n설정에서 언제든 복원할 수 있습니다.`)){saved.hidden=[...new Set([...saved.hidden,id])];persist();render()}}
   function renderHidden(){const el=$('hiddenList');if(!saved.hidden.length){el.innerHTML='<span style="color:#9ca4b5;font-size:11px">숨긴 저장소가 없습니다.</span>';return;}el.innerHTML=saved.hidden.map(id=>`<button class="hidden-pill" type="button" data-restore="${escapeHtml(id)}">${escapeHtml(id.replace(/^github:|^manual:/,''))} × 복원</button>`).join('');}
   function openSettings(){$('settingsOwner').value=saved.owner;$('settingsPagesOnly').checked=!!saved.pagesOnly;renderHidden();openDialog('settingsDialog')}
   function exportData(){const content=JSON.stringify({exportedAt:new Date().toISOString(),version:1,settings:saved},null,2);const blob=new Blob([content],{type:'application/json;charset=utf-8'});const a=document.createElement('a');const url=URL.createObjectURL(blob);a.href=url;a.download='my-webapp-studio-backup.json';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1500)}
   function importData(file){if(!file)return;const reader=new FileReader();reader.onload=()=>{try{const payload=JSON.parse(String(reader.result));const v=payload.settings;if(!v||!Array.isArray(v.manual)||!Array.isArray(v.favorites)||!Array.isArray(v.hidden)||!v.edits||typeof v.owner!=='string')throw new Error('올바른 백업 파일이 아닙니다.');if(!confirm('현재 저장된 직접 등록·즐겨찾기·수정 정보를 백업 내용으로 교체하시겠습니까?'))return;saved={...defaultData(),...v};persist();closeDialog('settingsDialog');state.category='all';state.filter='pages';state.repos=[];loadRepos(true);}catch(err){alert('불러오기 실패: '+err.message)}finally{$('importFile').value=''}};reader.readAsText(file)}
+  let qrActive={title:'',label:'',url:''};
+  function openQr(title,label,url){
+    qrActive={title,label,url};setText('qrTitle',`${label} · 접속 QR코드`);setText('qrSubtitle',`${title} — 카메라로 QR코드를 비춰 주세요.`);
+    setText('qrSiteLabel',`${title} · ${label}`);setText('qrUrl',url);
+    $('qrWarning').hidden=!/교사|대시보드|관리|관리자/.test(label);
+    const canvas=$('qrCanvas'),container=$('qrCanvas').parentElement;
+    try{
+      if(typeof PortalQR!=='function')throw new Error('QR코드 생성기를 실행할 수 없습니다.');
+      const qr=new PortalQR(0,1);qr.addData(url);qr.make();
+      const count=qr.getModuleCount(),unit=10,quiet=4;
+      canvas.width=(count+quiet*2)*unit;canvas.height=canvas.width;
+      const ctx=canvas.getContext('2d');ctx.fillStyle='#fff';ctx.fillRect(0,0,canvas.width,canvas.height);ctx.fillStyle='#111827';
+      for(let r=0;r<count;r++)for(let c=0;c<count;c++)if(qr.isDark(r,c))ctx.fillRect((c+quiet)*unit,(r+quiet)*unit,unit,unit);
+      container.classList.remove('qr-error');$('qrDownload').disabled=false;
+    }catch(err){console.error(err);container.classList.add('qr-error');$('qrDownload').disabled=true;}
+    openDialog('qrDialog');
+  }
+  $('qrCopy').addEventListener('click',async()=>{
+    try{await navigator.clipboard.writeText(qrActive.url);$('qrCopy').textContent='복사했습니다 ✓';setTimeout(()=>{$('qrCopy').innerHTML=`${icon('copy')} 링크 복사`},1500)}
+    catch{prompt('아래 주소를 복사해 주세요.',qrActive.url)}
+  });
+  $('qrDownload').addEventListener('click',()=>{
+    if(!qrActive.url)return;const c=$('qrCanvas'),a=document.createElement('a');a.href=c.toDataURL('image/png');a.download=`QR_${qrActive.title}_${qrActive.label}`.replace(/[\\/:*?"<>|]/g,'_')+'.png';document.body.appendChild(a);a.click();a.remove();
+  });
   document.querySelectorAll('[data-filter]').forEach(btn=>btn.addEventListener('click',()=>{state.filter=btn.dataset.filter;render();$('sidebar').classList.remove('open');$('overlay').classList.remove('active')}));
   $('brandHome').addEventListener('click',e=>{e.preventDefault();state.filter='pages';state.category='all';state.search='';$('searchInput').value='';render()});
   $('categoryTabs').addEventListener('click',e=>{const btn=e.target.closest('[data-category]');if(!btn)return;state.category=btn.dataset.category;render()});
   $('categorySelect').addEventListener('change',e=>{state.category=e.target.value;render()});
   $('searchInput').addEventListener('input',e=>{state.search=e.target.value;render()});
   $('sortSelect').addEventListener('change',e=>{state.sort=e.target.value;render()});
-  $('cardGrid').addEventListener('click',e=>{const btn=e.target.closest('[data-action]');if(!btn)return;const {action,id}=btn.dataset;if(action==='favorite')toggleFavorite(id);if(action==='edit'){const p=buildProjects().find(p=>p.id===id);if(p)openEditor(p)}if(action==='hide')hideProject(id);if(action==='reset'){state.search='';state.category='all';state.filter='all';$('searchInput').value='';render()}if(action==='add')openEditor()});
+  $('cardGrid').addEventListener('click',e=>{const btn=e.target.closest('[data-action]');if(!btn)return;const {action,id}=btn.dataset;if(action==='qr'){const p=buildProjects().find(p=>p.id===id);const link=p&&appLinks(p)[Number(btn.dataset.index)];if(p&&link)openQr(p.title,link.label,link.url);return;}if(action==='favorite')toggleFavorite(id);if(action==='edit'){const p=buildProjects().find(p=>p.id===id);if(p)openEditor(p)}if(action==='hide')hideProject(id);if(action==='reset'){state.search='';state.category='all';state.filter='all';$('searchInput').value='';render()}if(action==='add')openEditor()});
   $('addButton').addEventListener('click',()=>openEditor());$('editorForm').addEventListener('submit',handleEditSave);
   $('deleteManual').addEventListener('click',()=>{if(!state.editId)return;if(!confirm('이 직접 등록한 웹앱을 삭제하시겠습니까?'))return;saved.manual=saved.manual.filter(p=>p.id!==state.editId);saved.favorites=saved.favorites.filter(id=>id!==state.editId);persist();closeDialog('editorDialog');render()});
   $('topSettings').addEventListener('click',openSettings);$('sidebarSettings').addEventListener('click',openSettings);$('sidebarGuide').addEventListener('click',()=>openDialog('guideDialog'));$('refreshButton').addEventListener('click',()=>loadRepos(true));
