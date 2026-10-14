@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128" role="img" aria-label="My WebApp Studio 로고">
+<defs>
+ <linearGradient id="purple" x1="10%" y1="0%" x2="90%" y2="100%"><stop offset="0" stop-color="#7568ff"/><stop offset=".48" stop-color="#554ef1"/><stop offset="1" stop-color="#302caa"/></linearGradient>
+ <linearGradient id="cyan" x1="0%" y1="0%" x2="100%" y2="100%"><stop stop-color="#6ef5ee"/><stop offset="1" stop-color="#28d4f4"/></linearGradient>
+ <clipPath id="rounded"><rect x="2" y="2" width="124" height="124" rx="31"/></clipPath>
+</defs>
+<rect x="2" y="2" width="124" height="124" rx="31" fill="url(#purple)"/>
+<g clip-path="url(#rounded)"><path d="M0 26C26 4 59 0 83 3" fill="none" stroke="#ffffff" stroke-opacity=".12" stroke-width="22"/>
+<circle cx="108" cy="117" r="51" fill="#ffffff" fill-opacity=".06"/></g>
+<g stroke="#fff" stroke-width="6.5" fill="none">
+ <rect x="28" y="28" width="30" height="30" rx="7" />
+ <rect x="70" y="28" width="30" height="30" rx="7" />
+ <rect x="28" y="70" width="30" height="30" rx="7" />
+</g>
+<rect x="70" y="70" width="30" height="30" rx="7" fill="url(#cyan)" />
+<path d="M85 77v16M77 85h16" stroke="#2239ae" stroke-width="4" stroke-linecap="round" opacity=".9"/>
+</svg>
