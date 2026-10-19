@@ -3,7 +3,7 @@
 // 이 설정은 브라우저에 공개되는 웹 앱 구성입니다.
 // 실제 데이터 접근은 Authentication 및 Firestore 보안 규칙으로 보호해야 합니다.
 window.WEBAPP_FIREBASE_CONFIG = {
-  apiKey: "AIzaSyC4aydwN7NSwAU16R-cZoaS71kfa9iiqKQ",
+  apiKey: "AIzaSyC4aydvN7NSwAU16R-cZoaS71kfa9iiqKQ",
   authDomain: "my-webapp-studio.firebaseapp.com",
   projectId: "my-webapp-studio",
   storageBucket: "my-webapp-studio.firebasestorage.app",
