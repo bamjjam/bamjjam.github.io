@@ -1,4 +1,4 @@
-// My WebApp Studio 5.0 - optional Firebase/Firestore adapter.
+// My WebApp Studio 5.1 - optional Firebase/Firestore adapter.
 // Public Firebase web configuration is loaded from firebase-config.js.
 // No service-account key or GitHub token is ever used by this client.
 const notify = (type, extra = {}) => window.dispatchEvent(new CustomEvent('portal-cloud', {detail: {type, ...extra}}));
@@ -28,10 +28,11 @@ if (!configured) {
     const app = appMod.initializeApp(config);
     auth = authMod.getAuth(app);
     db = dbMod.getFirestore(app);
-    const {GoogleAuthProvider, signInWithPopup, signOut, setPersistence, browserSessionPersistence, onAuthStateChanged} = authMod;
+    const {GoogleAuthProvider, signInWithPopup, signOut, setPersistence, browserLocalPersistence, onAuthStateChanged} = authMod;
     const {doc, onSnapshot, setDoc, serverTimestamp, getDocFromServer} = dbMod;
-    // Browser-session-only login; reduces lingering access on school or shared computers.
-    await setPersistence(auth, browserSessionPersistence);
+    // Personal-PC mode: keep Firebase sign-in across browser restarts.
+    // A prior 5.0 session-only login is upgraded to persistent sign-in.
+    await setPersistence(auth, browserLocalPersistence);
     cloud.ready = true;
     cloud.login = async () => { await signInWithPopup(auth, new GoogleAuthProvider()); };
     cloud.logout = async () => { await signOut(auth); };
