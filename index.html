@@ -7,9 +7,9 @@
   <meta name="description" content="내 GitHub Pages 웹앱을 한곳에서 검색하고 실행하는 개인 대시보드" />
   <title>My WebApp Studio | 나의 웹앱 라이브러리</title>
   <!-- My WebApp Studio 브라우저 탭/북마크 아이콘 -->
-  <link rel="icon" type="image/x-icon" sizes="any" href="./favicon.ico?v=3" />
-  <link rel="icon" type="image/svg+xml" href="./favicon.svg?v=3" />
-  <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png?v=3" />
+  <link rel="icon" type="image/x-icon" sizes="any" href="./favicon.ico?v=4" />
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg?v=4" />
+  <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png?v=4" />
 
   <style>
     :root{--bg:#f6f8fc;--surface:#fff;--ink:#18223a;--muted:#7b859b;--line:#e6eaf1;--primary:#5954e8;--primarydeep:#4641c7;--soft:#eeeeff;--danger:#e35a72;--shadow:0 12px 35px rgba(31,45,83,.05);--radius:19px}
@@ -30,6 +30,16 @@
     .launch-area{border-top:1px solid #eff1f6;padding:13px 17px 16px;display:grid;gap:11px}.launch-unit{padding:10px;border:1px solid #e9ebf6;background:#fcfcff;border-radius:12px}.launch-caption{display:flex;align-items:center;gap:6px;font-size:12px;font-weight:800;color:#4c5373;margin:0 0 8px}.launch-dot{background:#6863dc;width:6px;height:6px;border-radius:50%}.launch-unit .card-action{width:100%;min-height:38px}.qr-action{display:flex;align-items:center;justify-content:center;gap:7px;width:100%;border:1px solid #dcdafd;background:#f0efff;color:#5550bf;border-radius:9px;margin-top:7px;min-height:36px;font-weight:800;font-size:12px}.qr-action svg{width:17px;height:17px}.qr-action:hover{background:#e5e3ff;border-color:#b8b3f5}.qr-action.disabled{pointer-events:none;color:#aaa;background:#f7f8fa;border-color:#edf0f4}.repo-link{display:flex;align-items:center;justify-content:center;gap:6px;color:#7e8aa0;font-size:11px;font-weight:750;padding:3px 0}.repo-link svg{width:14px;height:14px}.repo-link:hover{color:#4943cc}.qr-dialog{max-width:min(680px,calc(100vw - 26px));width:100%}.qr-dialog-main{padding:12px 26px 27px;text-align:center}.qr-paper{margin:auto;background:#fff;border:1px solid #e7eaf1;box-shadow:0 7px 26px #1d2a4d13;border-radius:18px;padding:12px;width:min(100%,390px);display:flex;align-items:center;justify-content:center;aspect-ratio:1}.qr-paper canvas{width:100%;height:auto;image-rendering:pixelated}.qr-paper.qr-error:before{content:'QR 생성 중 오류가 발생했습니다.';position:absolute;color:#d23f62;background:#fff;padding:20px}.qr-site-label{margin-top:16px;font-size:17px;font-weight:850;color:#323a57}.qr-url{margin:7px auto 0;max-width:550px;font-size:12px;color:#69738b;overflow-wrap:anywhere;user-select:all}.qr-warning{padding:10px 13px;margin:13px auto 0;text-align:left;max-width:540px;border-radius:9px;background:#fff8e9;color:#8f6527;font-size:11px}.qr-modal-actions{display:flex;justify-content:center;gap:10px;margin-top:18px;flex-wrap:wrap}.qr-modal-actions .btn{flex:1;max-width:230px}
     @media(max-width:560px){.launch-area{padding:12px}.qr-dialog-main{padding:10px 16px 20px}.qr-paper{max-width:330px}.qr-modal-actions .btn{flex:1 1 110px;padding:10px}}
     @media print{body:has(#qrDialog[open]) .shell,body:has(#qrDialog[open]) .sidebar-overlay{display:none}dialog.qr-dialog[open]{position:static;box-shadow:none;border:0;max-width:100%;width:100%}.qr-dialog .modal-head button,.qr-modal-actions{display:none}}
+  
+    /* V4 공통 카탈로그 상태 및 발행 버튼 */
+    .section-actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.section-actions .btn{font-size:12px}
+    .sync-note{display:flex;align-items:flex-start;gap:9px;border-radius:12px;margin:3px 0 14px;padding:11px 14px;background:#eeefff;border:1px solid #ddddff;color:#524c9b;font-size:12px;line-height:1.6}
+    .sync-note.success{background:#eafaf4;border-color:#d1f1e4;color:#177b56}.sync-note.warning{background:#fff8e9;border-color:#f5e2b9;color:#795e28}
+    .sync-note svg{width:16px;height:16px;margin-top:1px}.sync-note button{border:0;background:transparent;color:inherit;font-weight:800;text-decoration:underline;cursor:pointer;padding:0}
+    .shared-settings-block{border:1px solid #e8e5ff;background:#fafaff;border-radius:12px;padding:13px}.shared-status{font-size:12px;color:#55569e;font-weight:700;margin-bottom:10px}
+    .publish-manual-option{margin:12px 0 6px}.publish-manual-option small{line-height:1.5}
+    .meta-label{display:inline-flex;border-radius:6px;background:#f0f4ff;color:#5265a0;font-size:10px;font-weight:700;padding:3px 7px}
+    @media(max-width:750px){.section-actions{width:100%}.section-actions .btn{flex:1}}
   </style>
 </head>
 <body>
@@ -67,8 +77,8 @@
   <div class="shell">
     <aside class="sidebar" id="sidebar">
       <a class="brand" href="#" aria-label="대시보드 홈" id="brandHome">
-        <div class="brand-mark"><img src="./icon-192.png?v=3" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><svg style="display:none"><use href="#i-grid"/></svg></div>
-        <div><div class="brand-main">My WebApp Studio</div><div class="brand-sub">PERSONAL APP LIBRARY</div></div>
+        <div class="brand-mark"><img src="./icon-192.png?v=4" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><svg style="display:none"><use href="#i-grid"/></svg></div>
+        <div><div class="brand-main">My WebApp Studio</div><div class="brand-sub">SMART APP LIBRARY · V4</div></div>
       </a>
       <div class="nav-caption">WORKSPACE</div>
       <nav aria-label="프로젝트 필터">
@@ -80,7 +90,7 @@
       <div class="nav-caption">QUICK LINKS</div>
       <a class="nav-button" id="githubProfileLink" href="https://github.com/bamjjam" target="_blank" rel="noopener noreferrer"><svg><use href="#i-github"/></svg> GitHub 프로필 <svg style="margin-left:auto;width:14px;height:14px"><use href="#i-external"/></svg></a>
       <button class="nav-button" type="button" id="sidebarSettings"><svg><use href="#i-settings"/></svg> 설정 · 백업</button>
-      <div class="sidebar-bottom"><strong>작업물이 늘어나도 걱정 없이!</strong><p>공개 GitHub 저장소는 자동으로 불러옵니다. 비공개 작업물은 이 브라우저에만 저장할 수 있어요.</p><button class="text-link" style="border:0;background:transparent;padding:0" type="button" id="sidebarGuide">사용 안내 <svg><use href="#i-external"/></svg></button></div>
+      <div class="sidebar-bottom"><strong>작업물이 늘어나도 걱정 없이!</strong><p>GitHub README·HTML을 읽어 제목과 설명을 자동으로 정리합니다. 공통 메타데이터는 GitHub에서 공유합니다.</p><button class="text-link" style="border:0;background:transparent;padding:0" type="button" id="sidebarGuide">사용 안내 <svg><use href="#i-external"/></svg></button></div>
     </aside>
     <main class="main">
       <header class="topbar">
@@ -88,16 +98,16 @@
         <div class="top-actions"><div class="user-pill"><svg><use href="#i-github"/></svg><span id="ownerDisplay">bamjjam</span></div><button type="button" class="icon-button" id="refreshButton" title="GitHub 새로고침" aria-label="GitHub 새로고침"><svg><use href="#i-refresh"/></svg></button><button type="button" class="icon-button" id="topSettings" title="설정" aria-label="설정"><svg><use href="#i-settings"/></svg></button></div>
       </header>
       <section class="hero">
-        <div><div class="hero-tag"><svg><use href="#i-spark"/></svg> MY CREATIVE WORKSPACE</div><h2>아이디어는 만들고,<br />작업물은 한곳에서 관리하세요.</h2><p>GitHub에 올린 웹앱을 자동으로 모아 보고, 찾아서 바로 실행할 수 있습니다.</p></div>
+        <div><div class="hero-tag"><svg><use href="#i-spark"/></svg> MY CREATIVE WORKSPACE</div><h2>아이디어는 만들고,<br />작업물은 한곳에서 관리하세요.</h2><p>GitHub의 HTML·README를 자동 분석합니다. 공통 설정 파일로 집과 학교에서도 같은 제목과 설명을 봅니다.</p></div>
         <div class="hero-graphic" aria-hidden="true"><div class="hero-panel panel-b"><div class="mock-dots"><b></b><b></b><b></b></div><div class="mock-tile"></div><div class="mock-line"></div><div class="mock-line half"></div><div class="mock-pill"></div></div><div class="hero-panel"><div class="mock-dots"><b></b><b></b><b></b></div><div class="mock-tile"></div><div class="mock-line"></div><div class="mock-line half"></div><div class="mock-pill"></div></div></div>
       </section>
       <section class="stats" aria-label="프로젝트 통계"><div class="stat"><div><small>실행 가능한 웹앱</small><strong id="statPages">—</strong></div><span class="stat-icon"><svg><use href="#i-globe"/></svg></span></div><div class="stat"><div><small>전체 등록 프로젝트</small><strong id="statAll">—</strong></div><span class="stat-icon"><svg><use href="#i-grid"/></svg></span></div><div class="stat"><div><small>즐겨찾기</small><strong id="statFav">—</strong></div><span class="stat-icon"><svg><use href="#i-star"/></svg></span></div></section>
       <section>
-        <div class="section-head"><div><h2 id="sectionTitle">배포된 웹앱</h2><p id="sectionSubtitle">저장소를 불러오는 중입니다.</p></div><button type="button" class="btn btn-primary" id="addButton"><svg><use href="#i-plus"/></svg> 직접 추가</button></div>
+        <div class="section-head"><div><h2 id="sectionTitle">배포된 웹앱</h2><p id="sectionSubtitle">저장소를 불러오는 중입니다.</p></div><div class="section-actions"><button type="button" class="btn btn-outline" id="catalogButton" title="모든 PC에서 동일하게 보이는 공통 데이터 다운로드"><svg><use href="#i-download"/></svg> 공통 설정 발행</button><button type="button" class="btn btn-primary" id="addButton"><svg><use href="#i-plus"/></svg> 직접 추가</button></div></div>
         <div class="toolbar"><label class="search-wrap"><svg><use href="#i-search"/></svg><span class="sr-only">웹앱 검색</span><input id="searchInput" placeholder="웹앱 이름, 설명, 과목 검색..." autocomplete="off" /></label><div class="tools-right"><select class="select" id="categorySelect" aria-label="과목 선택"><option value="all">전체 과목</option></select><select class="select" id="sortSelect" aria-label="정렬"><option value="updated">최근 수정순</option><option value="name">이름순</option><option value="oldest">오래된순</option></select></div></div>
-        <div class="tabs" id="categoryTabs" aria-label="과목별 빠른 필터"></div><p class="results-note" id="resultsNote" aria-live="polite"></p><div id="noticeArea" aria-live="polite"></div><div id="cardGrid" class="card-grid" aria-live="polite"></div>
+        <div class="tabs" id="categoryTabs" aria-label="과목별 빠른 필터"></div><p class="results-note" id="resultsNote" aria-live="polite"></p><div id="sharedStatusArea" aria-live="polite"></div><div id="noticeArea" aria-live="polite"></div><div id="cardGrid" class="card-grid" aria-live="polite"></div>
       </section>
-      <footer class="footer"><span>© My WebApp Studio · GitHub 공개 API 기반 · 서버 없는 개인 웹앱</span><span>설정·즐겨찾기·비공개 바로가기는 이 브라우저에 저장됩니다.</span></footer>
+      <footer class="footer"><span>© My WebApp Studio · GitHub 공개 API 기반 · 무료 자동 분석 버전 4.0</span><span>공통 제목·설명·과목은 GitHub catalog.json, 즐겨찾기·비공개 주소는 이 브라우저에 저장됩니다.</span></footer>
     </main>
   </div>
   <dialog id="editorDialog" aria-labelledby="editorTitle"><form id="editorForm">
@@ -105,9 +115,9 @@
     <div class="modal-body"><label class="field"><span>웹앱 이름 *</span><input name="title" id="fieldTitle" required maxlength="100" placeholder="예: 분수 비교 시뮬레이터" /></label><label class="field"><span>설명</span><textarea name="description" id="fieldDescription" maxlength="360" placeholder="이 웹앱은 무엇을 하는 앱인가요?"></textarea></label><label class="field"><span>과목 분류</span><select name="category" id="fieldCategory"><option>AI·SW</option><option>과학</option><option>국어·한자</option><option>수학</option><option>사회</option><option>예체능</option><option>기타</option></select></label><label class="field"><span>웹앱 실행 주소</span><input type="url" name="site" id="fieldSite" placeholder="https://..." /><span class="hint" id="siteHint">주소가 있다면 입력해 주세요.</span></label><label class="field"><span>같은 저장소 안의 추가 웹앱</span><textarea name="subApps" id="fieldSubApps" rows="3" placeholder="교사용 | teacher.html&#10;대시보드 | dashboard.html"></textarea><span class="hint">한 줄에 하나씩 <strong>이름 | 파일명</strong>을 적으세요. 예: 교사용 | teacher.html. 전체 URL도 가능합니다. 같은 GitHub 저장소 안의 HTML을 연결할 수 있습니다.</span></label><label class="field" id="repoField"><span>소스코드 주소 (선택)</span><input type="url" name="repo" id="fieldRepo" placeholder="https://github.com/사용자명/저장소명" /></label></div>
     <div class="modal-foot"><button type="button" class="btn btn-danger small" id="deleteManual" hidden>삭제</button><div class="modal-foot-end"><button type="button" class="btn btn-outline" data-close="editorDialog">취소</button><button type="submit" class="btn btn-primary"><svg><use href="#i-check"/></svg> 저장하기</button></div></div>
   </form></dialog>
-  <dialog id="settingsDialog" aria-labelledby="settingsTitle"><div class="modal-head"><div><h2 id="settingsTitle">대시보드 설정</h2><p>공개 프로젝트 자동 수집과 브라우저 저장 데이터를 관리합니다.</p></div><button class="close-btn" type="button" data-close="settingsDialog" aria-label="닫기"><svg><use href="#i-close"/></svg></button></div><div class="modal-body"><label class="field"><span>GitHub 사용자 이름</span><input id="settingsOwner" value="bamjjam" placeholder="GitHub ID" maxlength="39" /><span class="hint">해당 계정의 공개 저장소만 자동 수집할 수 있습니다.</span></label><div class="switch-row"><div><strong>Pages 설정된 저장소 자동 표시</strong><small>GitHub API의 Pages 설정 여부를 기준으로 합니다.</small></div><input id="settingsPagesOnly" type="checkbox" checked /></div><div class="field"><span>데이터 백업</span><div class="settings-actions"><button type="button" class="btn btn-outline small" id="exportButton"><svg><use href="#i-download"/></svg> 내보내기</button><button type="button" class="btn btn-outline small" id="importButton"><svg><use href="#i-upload"/></svg> 불러오기</button><input id="importFile" type="file" accept="application/json,.json" hidden /></div><div class="hint">즐겨찾기, 직접 추가한 주소, 과목/이름 수정 정보가 포함됩니다. 비공개 주소를 담은 백업 파일을 타인과 공유하지 마세요.</div></div><div class="field"><span>숨김 처리한 저장소</span><div class="hidden-list" id="hiddenList">없음</div></div></div><div class="modal-foot"><span style="font-size:11px;color:#9ba3b5">비밀번호나 GitHub 토큰을 입력하지 않습니다.</span><div class="modal-foot-end"><button type="button" class="btn btn-primary" id="saveSettings">적용</button></div></div></dialog>
+  <dialog id="settingsDialog" aria-labelledby="settingsTitle"><div class="modal-head"><div><h2 id="settingsTitle">대시보드 설정</h2><p>공통 메타데이터는 GitHub에, 개인 설정은 이 브라우저에 저장합니다.</p></div><button class="close-btn" type="button" data-close="settingsDialog" aria-label="닫기"><svg><use href="#i-close"/></svg></button></div><div class="modal-body"><label class="field"><span>GitHub 사용자 이름</span><input id="settingsOwner" value="bamjjam" placeholder="GitHub ID" maxlength="39" /><span class="hint">해당 계정의 공개 저장소만 자동 수집할 수 있습니다.</span></label><div class="switch-row"><div><strong>Pages 설정된 저장소 자동 표시</strong><small>GitHub API의 Pages 설정 여부를 기준으로 합니다.</small></div><input id="settingsPagesOnly" type="checkbox" checked /></div><div class="field shared-settings-block"><span>집·학교 공통 정보 동기화</span><div class="shared-status" id="sharedStatusSettings">공통 설정 확인 중...</div><div class="settings-actions"><button type="button" class="btn btn-primary small" id="publishCatalog"><svg><use href="#i-download"/></svg> catalog.json 만들기</button><button type="button" class="btn btn-outline small" id="refreshShared"><svg><use href="#i-refresh"/></svg> 공통 정보 다시 읽기</button><button type="button" class="btn btn-outline small" id="discardDrafts">로컬 수정 초안 지우기</button></div><label class="switch-row publish-manual-option"><div><strong>직접 등록한 공개 바로가기 포함</strong><small>체크하면 수동 등록 항목의 이름과 주소도 GitHub 공개 파일에 포함됩니다. 비공개·개인용 링크는 체크하지 마세요.</small></div><input id="includeManualInCatalog" type="checkbox" /></label><p class="hint">발행 버튼은 JSON 파일을 내려받습니다. <strong>GitHub의 bamjjam.github.io 저장소에 catalog.json을 업로드하거나 교체해야</strong> 모든 기기에 반영됩니다. 브라우저의 즐겨찾기는 개인별로 유지됩니다.</p><a id="catalogGithubLink" class="text-link" href="https://github.com/bamjjam/bamjjam.github.io" target="_blank" rel="noopener noreferrer">GitHub 공통 설정 파일 관리 ↗</a></div><div class="field"><span>데이터 백업</span><div class="settings-actions"><button type="button" class="btn btn-outline small" id="exportButton"><svg><use href="#i-download"/></svg> 내보내기</button><button type="button" class="btn btn-outline small" id="importButton"><svg><use href="#i-upload"/></svg> 불러오기</button><input id="importFile" type="file" accept="application/json,.json" hidden /></div><div class="hint">즐겨찾기, 직접 추가한 주소, 과목/이름 수정 정보가 포함됩니다. 비공개 주소를 담은 백업 파일을 타인과 공유하지 마세요.</div></div><div class="field"><span>숨김 처리한 저장소</span><div class="hidden-list" id="hiddenList">없음</div></div></div><div class="modal-foot"><span style="font-size:11px;color:#9ba3b5">비밀번호나 GitHub 토큰을 입력하지 않습니다.</span><div class="modal-foot-end"><button type="button" class="btn btn-primary" id="saveSettings">적용</button></div></div></dialog>
   <dialog id="qrDialog" aria-labelledby="qrTitle" class="qr-dialog"><div class="modal-head"><div><h2 id="qrTitle">QR코드로 바로 접속</h2><p id="qrSubtitle">화면을 보여주면 학생들이 카메라로 찍을 수 있습니다.</p></div><button type="button" class="close-btn" data-close="qrDialog" aria-label="QR코드 창 닫기"><svg><use href="#i-close"/></svg></button></div><div class="qr-dialog-main"><div class="qr-paper"><canvas id="qrCanvas" role="img" aria-label="웹앱 접속 QR코드"></canvas></div><div class="qr-site-label" id="qrSiteLabel"></div><div class="qr-url" id="qrUrl"></div><div class="qr-warning" id="qrWarning" hidden>교사용·대시보드 주소도 공개된 Pages라면 링크를 아는 누구나 열 수 있습니다. 학생에게 공유하거나 화면을 보여줄 때 주의하세요.</div><div class="qr-modal-actions"><button class="btn btn-outline" id="qrCopy" type="button"><svg><use href="#i-copy"/></svg> 링크 복사</button><button class="btn btn-primary" id="qrDownload" type="button"><svg><use href="#i-download"/></svg> QR 이미지 저장</button></div></div></dialog>
-  <dialog id="guideDialog" aria-labelledby="guideTitle"><div class="modal-head"><div><h2 id="guideTitle">사용 안내</h2><p>웹앱을 편하게 관리하기 위한 몇 가지 팁입니다.</p></div><button class="close-btn" type="button" data-close="guideDialog" aria-label="닫기"><svg><use href="#i-close"/></svg></button></div><div class="modal-body" style="font-size:13px;color:#657088;line-height:1.9"><p><strong>자동 등록:</strong> GitHub 공개 저장소는 페이지 로딩 시 불러옵니다. <strong>배포된 웹앱</strong>에는 GitHub에서 Pages 기능이 설정된 저장소만 표시됩니다.</p><p><strong>직접 추가:</strong> 공개 API에서 보이지 않는 비공개 작업물이나 다른 웹사이트를 추가하세요. 주소·이름·분류는 현재 브라우저에만 저장됩니다.</p><p><strong>수정·숨김:</strong> 각 카드 오른쪽 위 연필을 눌러 이름, 과목, 실행 주소를 고치거나 숨길 수 있습니다. 별표는 즐겨찾기입니다.</p><p><strong>추가 웹앱:</strong> 카드의 연필을 눌러 <strong>이름 | 파일명</strong>을 한 줄에 하나씩 입력하세요. 예: 교사용 | teacher.html. 파일들은 같은 저장소에 업로드하면 됩니다. <strong>QR코드 만들기</strong>로 학생용 접속 QR을 크게 표시하거나 PNG로 저장할 수 있습니다.</p><p><strong>백업:</strong> 다른 PC에서도 똑같이 사용하려면 설정 → 내보내기 후 새 PC에서 불러오기를 선택하세요. 공개 사이트 HTML에 개인 정보나 액세스 토큰을 넣지 마세요.</p><p><strong>주의:</strong> Pages 설정이 되어 있어도 빌드가 실패했거나 배포 주소가 다르면 실행되지 않을 수 있습니다. 그 경우 연필을 눌러 정확한 주소를 지정해 주세요.</p></div><div class="modal-foot"><div class="modal-foot-end"><button type="button" class="btn btn-primary" data-close="guideDialog">알겠습니다</button></div></div></dialog>
+  <dialog id="guideDialog" aria-labelledby="guideTitle"><div class="modal-head"><div><h2 id="guideTitle">사용 안내</h2><p>웹앱을 편하게 관리하기 위한 몇 가지 팁입니다.</p></div><button class="close-btn" type="button" data-close="guideDialog" aria-label="닫기"><svg><use href="#i-close"/></svg></button></div><div class="modal-body" style="font-size:13px;color:#657088;line-height:1.9"><p><strong>자동 등록:</strong> GitHub 공개 저장소는 페이지 로딩 시 불러옵니다. <strong>배포된 웹앱</strong>에는 GitHub에서 Pages 기능이 설정된 저장소만 표시됩니다.</p><p><strong>직접 추가:</strong> 공개 API에서 보이지 않는 비공개 작업물이나 다른 웹사이트를 추가하세요. 기본적으로 주소·이름·분류는 현재 브라우저에 저장됩니다. 공개 공유가 필요할 때만 공통 설정 파일에 내보내세요.</p><p><strong>수정·숨김:</strong> 각 카드 오른쪽 위 연필을 눌러 이름, 과목, 실행 주소를 고치거나 숨길 수 있습니다. 별표는 즐겨찾기입니다.</p><p><strong>추가 웹앱:</strong> 카드의 연필을 눌러 <strong>이름 | 파일명</strong>을 한 줄에 하나씩 입력하세요. 예: 교사용 | teacher.html. 파일들은 같은 저장소에 업로드하면 됩니다. <strong>QR코드 만들기</strong>로 학생용 접속 QR을 크게 표시하거나 PNG로 저장할 수 있습니다.</p><p><strong>백업:</strong> 집·학교에서 동일한 제목·설명·과목을 보려면 「공통 설정 발행」으로 catalog.json을 내려받아 GitHub 포털 저장소에 올리세요. 3.0의 수정 정보는 같은 브라우저라면 자동으로 불러옵니다. 다른 PC의 예전 설정은 3.0 백업을 불러온 뒤 공통 설정을 발행할 수 있습니다. 공개 사이트 HTML에 개인 정보나 액세스 토큰을 넣지 마세요.</p><p><strong>주의:</strong> Pages 설정이 되어 있어도 빌드가 실패했거나 배포 주소가 다르면 실행되지 않을 수 있습니다. 그 경우 연필을 눌러 정확한 주소를 지정해 주세요.</p></div><div class="modal-foot"><div class="modal-foot-end"><button type="button" class="btn btn-primary" data-close="guideDialog">알겠습니다</button></div></div></dialog>
   <script>
   /* QRCode generator © 2009 Kazuhiko Arase, MIT License. Browser adaptation from qrcode-terminal vendor code. */
   (() => {
@@ -1342,49 +1352,205 @@ QRCode.createBytes = function(buffer, rsBlocks) {
   // 이 파일을 GitHub Pages에 그대로 업로드하세요. GitHub 토큰은 필요하지 않습니다.
   const STORAGE_KEY = 'my-webapp-studio-v1';
   const CACHE_KEY = 'my-webapp-studio-public-cache-v1';
+  const ANALYSIS_KEY = 'my-webapp-studio-auto-analysis-v4';
+  const CATALOG_NAME = 'catalog.json';
   const CATEGORIES = ['AI·SW','과학','국어·한자','수학','사회','예체능','기타'];
+  // 첫 설치·오프라인을 위한 최소 폴백. GitHub catalog.json이 있으면 그 파일이 공통 기준입니다.
   const META = {
     'ai-ethics': {title:'추천 알고리즘과 AI 윤리',description:'학생용·교사용·결과 대시보드를 한 저장소에서 실행',category:'AI·SW',subApps:[{label:'교사용',path:'teacher.html'},{label:'대시보드',path:'dashboard.html'}]},
     'Double-slit-experiment': {title:'이중슬릿 실험 시뮬레이터',description:'관측과 간섭 현상을 살펴보는 과학 시뮬레이터',category:'과학'}
   };
-  // 특정 저장소 안의 하위 앱만 별도 카드로 표시합니다.
-  // 일반 저장소 스캔은 하지 않아 한 저장소의 학생용·교사용 페이지가 카드로 분리되지 않습니다.
-  const VIRTUAL_APPS = [
-    {repoName:'bamjjam.github.io',slug:'prism',path:'prism/',sourcePath:'prism',title:'각기둥 전개도 시뮬레이터',description:'초등 6학년을 위한 각기둥 전개도 접기·펼치기와 문제 풀이',category:'수학'}
-  ];
+  let sharedCatalog = {version:1,projects:{},manual:[]};
+  let sharedStatus = 'loading', sharedError = '';
+  let draftPending = false;
   const $ = id => document.getElementById(id);
   const icon = name => `<svg aria-hidden="true"><use href="#i-${name}"/></svg>`;
   const escapeHtml = s => String(s ?? '').replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const validUrl = value => {try {const u = new URL(String(value||'').trim());return ['https:','http:'].includes(u.protocol)?u.href:'';} catch {return ''}};
-  const defaultData = () => ({owner:'bamjjam',manual:[],favorites:[],hidden:[],edits:{},pagesOnly:true});
-  function getSaved(){try{const p=JSON.parse(localStorage.getItem(STORAGE_KEY)||'null');if(!p||typeof p!=='object')return defaultData();return {...defaultData(),...p,owner:typeof p.owner==='string'&&/^[a-z\d](?:[a-z\d-]{0,37}[a-z\d])?$/i.test(p.owner)?p.owner:'bamjjam',manual:Array.isArray(p.manual)?p.manual:[],favorites:Array.isArray(p.favorites)?p.favorites:[],hidden:Array.isArray(p.hidden)?p.hidden:[],edits:p.edits&&typeof p.edits==='object'&&!Array.isArray(p.edits)?p.edits:{}};}catch{return defaultData();}}
+  const defaultData = () => ({owner:'bamjjam',manual:[],favorites:[],hidden:[],edits:{},editBases:{},pagesOnly:true});
+  function getSaved(){try{const p=JSON.parse(localStorage.getItem(STORAGE_KEY)||'null');if(!p||typeof p!=='object')return defaultData();return {...defaultData(),...p,owner:typeof p.owner==='string'&&/^[a-z\d](?:[a-z\d-]{0,37}[a-z\d])?$/i.test(p.owner)?p.owner:'bamjjam',manual:Array.isArray(p.manual)?p.manual:[],favorites:Array.isArray(p.favorites)?p.favorites:[],hidden:Array.isArray(p.hidden)?p.hidden:[],edits:p.edits&&typeof p.edits==='object'&&!Array.isArray(p.edits)?p.edits:{},editBases:p.editBases&&typeof p.editBases==='object'&&!Array.isArray(p.editBases)?p.editBases:{}};}catch{return defaultData();}}
   let saved = getSaved();
-  const state = {repos:[],loading:false,error:'',filter:'pages',category:'all',search:'',sort:'updated',editId:null,lastSynced:null};
+  const state = {repos:[],analysis:{},analysisBusy:false,loading:false,error:'',filter:'pages',category:'all',search:'',sort:'updated',editId:null,lastSynced:null};
   function persist(){try{localStorage.setItem(STORAGE_KEY,JSON.stringify(saved));}catch{alert('브라우저 저장 공간을 사용할 수 없습니다. 설정에서 백업 파일을 만들어 두세요.')}}
+  // 읽기 전용 동기화: GitHub Pages에서 공개한 catalog.json을 모든 기기가 공통으로 읽습니다.
+  function sanitizeMetadata(o){
+    if(!o||typeof o!=='object'||Array.isArray(o))return {};
+    const a={};
+    for(const key of ['title','description','category','site'])if(typeof o[key]==='string')a[key]=o[key].slice(0,key==='description'?360:300);
+    if(Array.isArray(o.subApps))a.subApps=o.subApps.slice(0,20).filter(x=>x&&typeof x.label==='string'&&typeof x.path==='string').map(x=>({label:x.label.slice(0,45),path:x.path.slice(0,400)}));
+    return a;
+  }
+  function normalizeCatalog(data){
+    if(!data||typeof data!=='object'||Array.isArray(data)||Number(data.version)!==1)throw new Error('catalog.json 형식이 올바르지 않습니다.');
+    const projects={};
+    if(data.projects&&typeof data.projects==='object'&&!Array.isArray(data.projects)){
+      for(const [name,meta] of Object.entries(data.projects))if(/^[A-Za-z0-9_.-]{1,100}$/.test(name)&&name!=='__proto__'&&name!=='constructor'&&name!=='prototype')Object.defineProperty(projects,name,{value:sanitizeMetadata(meta),enumerable:true,configurable:true,writable:true});
+    }
+    const manual=Array.isArray(data.manual)?data.manual.slice(0,100).filter(p=>p&&typeof p==='object'&&validUrl(p.site)&&(!p.repo||validUrl(p.repo))).map(p=>({id:String(p.id||'shared:'+String(p.title||'')).slice(0,100),title:String(p.title||'이름 없는 웹앱').slice(0,100),description:String(p.description||'').slice(0,360),category:CATEGORIES.includes(p.category)?p.category:'기타',site:validUrl(p.site),repo:validUrl(p.repo),subApps:sanitizeMetadata(p).subApps||[],updated:String(p.updated||'')})):[];
+    return {version:1,projects,manual};
+  }
+  async function loadSharedCatalog(){
+    sharedStatus='loading'; sharedError=''; updateSharedNotice();
+    try{
+      const url=new URL('./'+CATALOG_NAME,location.href);url.searchParams.set('v',Date.now());
+      const resp=await fetch(url.href,{cache:'no-store'});
+      if(!resp.ok)throw new Error(resp.status===404?'GitHub에 catalog.json이 없습니다. 파일을 먼저 업로드해 주세요.':`공통 설정 연결 오류 (${resp.status})`);
+      sharedCatalog=normalizeCatalog(await resp.json());
+      sharedStatus='ready';reconcileDrafts();
+    }catch(err){sharedStatus='missing';sharedError=String(err.message||err);/* 로컬 편집과 자동 분석은 계속 사용 */}
+    updateSharedNotice();render();
+  }
+  // 공유 원본이 바뀌면 낡은 브라우저 수정본보다 GitHub 데이터가 우선합니다.
+  function draftIsStale(id){
+    if(sharedStatus!=='ready'||!id.startsWith('github:'))return false;
+    const base=saved.editBases?.[id];
+    return typeof base==='string'&&base!==JSON.stringify(sharedCatalog.projects[id.slice(7)]||{});
+  }
+  function activeDraftCount(){return Object.keys(saved.edits).filter(k=>!draftIsStale(k)).length}
+  function reconcileDrafts(){
+    let modified=false;
+    for(const [id,ed] of Object.entries(saved.edits)){
+      if(!id.startsWith('github:'))continue;
+      const current=sharedCatalog.projects[id.slice(7)]||{},keys=Object.keys(ed||{});
+      // 발행이 완료되어 공통 파일과 내용이 같으면 초안을 지웁니다.
+      if(keys.length && keys.every(k=>JSON.stringify(ed[k]||'')===JSON.stringify(current[k]||''))){
+        delete saved.edits[id];delete saved.editBases[id];modified=true;continue;
+      }
+      // 3.0에서 가져온 수정은 처음 읽은 공통 데이터 기준으로 이관합니다.
+      if(typeof saved.editBases[id]!=='string'){saved.editBases[id]=JSON.stringify(current);modified=true}
+    }
+    if(modified)persist();
+  }
+  function updateSharedNotice(){
+    const el=$('sharedStatusArea');if(!el)return;
+    const isReady=sharedStatus==='ready';const isMissing=sharedStatus==='missing';
+    const text=isReady?'공통 카탈로그 연결됨 · 집·학교에서 같은 제목·설명을 불러옵니다.':isMissing?'공통 설정 파일을 확인할 수 없습니다. 자동 분석과 이 브라우저의 편집 내용은 계속 표시됩니다.':'공통 카탈로그를 확인 중입니다...';
+    el.innerHTML=`<div class="sync-note ${isReady?'success':isMissing?'warning':''}">${icon(isReady?'check':isMissing?'alert':'refresh')}<div>${escapeHtml(text)} ${isReady&&activeDraftCount()?' <strong>이 브라우저의 미발행 수정이 있습니다.</strong>':''} <button type="button" id="syncPublishInline">공통 설정 발행</button></div></div>`;
+    $('syncPublishInline')?.addEventListener('click',publishCatalog);
+    const s=$('sharedStatusSettings');if(s)s.textContent=(isReady?'공통 설정 연결됨':isMissing?'공통 설정 없음 / 접속 실패':'공통 설정 확인 중')+(activeDraftCount()?' · 로컬 미발행 '+activeDraftCount()+'개':'');
+    const l=$('catalogGithubLink');if(l)l.href=`https://github.com/${encodeURIComponent(saved.owner)}/${encodeURIComponent(saved.owner+'.github.io')}/blob/main/catalog.json`;
+  }
+  function downloadJSON(data,filename){
+    const content=JSON.stringify(data,null,2)+'\n'; const blob=new Blob([content],{type:'application/json;charset=utf-8'});
+    const a=document.createElement('a'),url=URL.createObjectURL(blob);a.href=url;a.download=filename;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1200);
+  }
+  function publishCatalog(){
+    // 공개 JSON에 넣을 자료만 골라냅니다. 즐겨찾기/숨김/개인 URL은 기본 제외.
+    const projects=Object.create(null);
+    for(const [k,v] of Object.entries(sharedCatalog.projects||{}))projects[k]=sanitizeMetadata(v);
+    for(const [id,meta] of Object.entries(saved.edits))if(id.startsWith('github:')&&!draftIsStale(id)){
+      const name=id.slice(7);if(/^[A-Za-z0-9_.-]{1,100}$/.test(name))projects[name]={...(projects[name]||{}),...sanitizeMetadata(meta)};
+    }
+    const wantsManual=!!$('includeManualInCatalog')?.checked;
+    const manual=wantsManual?[...(sharedCatalog.manual||[]),...saved.manual].filter(p=>validUrl(p.site)).map(p=>({id:p.id,title:p.title,description:p.description,category:p.category,site:p.site,repo:p.repo||'',subApps:p.subApps||[],updated:p.updated||''})):sharedCatalog.manual||[];
+    const deduped=Array.from(new Map(manual.map(p=>[p.id,p])).values());
+    const output={version:1,projects,manual:deduped};
+    if(wantsManual&&!confirm('주의: 직접 등록한 주소와 제목이 공개 GitHub 파일에 저장됩니다. 학교 내부망·비공개 자료·개인용 주소는 포함하지 않았는지 확인하셨습니까?'))return;
+    downloadJSON(output,CATALOG_NAME);
+    alert('catalog.json 파일을 내려받았습니다.\n이제 GitHub의 '+saved.owner+'.github.io 저장소에 파일을 업로드하거나 기존 파일을 교체하고 Commit changes를 누르세요.\n배포 후 집과 학교에서 같은 정보를 확인할 수 있습니다.');
+  }
+  function normalizeTitle(x){return String(x||'').replace(/\s+/g,' ').replace(/^[#\-*\s]+/,'').replace(/[<>{}]/g,'').trim().slice(0,85)}
+  function meaningfulTitle(s){const t=normalizeTitle(s);return t&&!/^(untitled|document|react app|vite \+ react|home|index|readme|webapp|html|loading|페이지|제목 없음|my app)$/i.test(t)&&t.length<86?t:''}
+  function readableRepoName(s){return String(s||'').replace(/[-_]+/g,' ').replace(/([a-z])([0-9])/ig,'$1 $2').replace(/\s+/g,' ').trim()}
+  function extractHTML(html){
+    if(!html)return {};
+    const doc=new DOMParser().parseFromString(html.slice(0,350000),'text/html');
+    const meta=(selector)=>doc.querySelector(selector)?.getAttribute('content')?.trim()||'';
+    const title=meaningfulTitle(meta('meta[property="og:title"]'))||meaningfulTitle(doc.querySelector('title')?.textContent)||meaningfulTitle(doc.querySelector('h1')?.textContent);
+    const description=(meta('meta[name="description"]')||meta('meta[property="og:description"]')||'').replace(/\s+/g,' ').slice(0,220);
+    // 본문 일부는 분류 키워드 용도일 뿐, JS나 HTML은 실행하지 않습니다.
+    doc.querySelectorAll('script,style,noscript,svg').forEach(x=>x.remove());
+    const text=(doc.body?.textContent||'').replace(/\s+/g,' ').slice(0,1300);
+    return {title,description,text};
+  }
+  function extractREADME(md){
+    const str=String(md||'').slice(0,24000).replace(/```[\s\S]*?```/g,' '),lines=str.split(/\r?\n/);
+    let title='',description='';
+    for(let i=0;i<lines.length;i++){
+      const t=lines[i].trim();if(!title&&/^#\s+\S/.test(t))title=meaningfulTitle(t.replace(/^#\s+/,''));
+      if(!description&&t.length>19&&t.length<280&&!/^(#|\[!\[|!\[|\||<|[-*]\s|>|```|https?:\/\/|\[.*\]:)/.test(t)){
+        const c=t.replace(/\[([^\]]+)\]\([^)]*\)/g,'$1').replace(/[*_`~]/g,'').trim();
+        if(c.length>20)description=c.slice(0,220);
+      }
+      if(title&&description)break;
+    }
+    return {title,description,text:str.slice(0,2000)};
+  }
+  async function fetchRaw(owner,repo,branch,path){
+    const parts=[owner,repo,branch,...path.split('/')].map(encodeURIComponent);
+    const url='https://raw.githubusercontent.com/'+parts.join('/');
+    const controller=new AbortController(),timeout=setTimeout(()=>controller.abort(),8000);
+    try{
+      const r=await fetch(url,{signal:controller.signal,cache:'force-cache'});if(!r.ok)return '';
+      // UTF-8 파일이 너무 커도 첫 350KB만 읽습니다.
+      if(!r.body)return (await r.text()).slice(0,350000);
+      const reader=r.body.getReader(),chunks=[];let n=0;
+      while(n<350000){const {done,value}=await reader.read();if(done)break;const part=value.slice(0,350000-n);chunks.push(part);n+=part.length;if(n>=350000){await reader.cancel();break}}
+      const bytes=new Uint8Array(n);let off=0;for(const part of chunks){bytes.set(part,off);off+=part.length}
+      return new TextDecoder('utf-8',{fatal:false}).decode(bytes);
+    }finally{clearTimeout(timeout)}
+  }
+  async function fetchTree(owner,repo,branch){
+    const uri=`https://api.github.com/repos/${encodeURIComponent(owner)}/${encodeURIComponent(repo)}/git/trees/${encodeURIComponent(branch)}?recursive=1`;
+    const resp=await fetch(uri,{headers:{Accept:'application/vnd.github+json'}});
+    if(!resp.ok)throw new Error(`GitHub 트리 조회 오류 ${resp.status}`);
+    const data=await resp.json();return Array.isArray(data.tree)?data.tree.filter(x=>x.type==='blob'&&typeof x.path==='string').map(x=>x.path):[];
+  }
+  function inferSubApps(paths){
+    const files=paths.filter(p=>!p.includes('/')&&p.toLowerCase().endsWith('.html')&&!/^index\.html$/i.test(p)&&!/(?:backup|old|test|temp|demo-copy|\.bak)/i.test(p));
+    return files.slice(0,12).map(path=>{
+      const stem=path.replace(/\.html$/i,''),s=stem.toLowerCase();
+      const label=/(teacher|교사)/.test(s)?'교사용':/(dashboard|result|대시보드|결과)/.test(s)?'대시보드':/(student|학생)/.test(s)?'학생용':/(admin|manage)/.test(s)?'관리용':readableRepoName(stem);
+      return {label,path};
+    });
+  }
+  async function analyzeOne(repo,force=false){
+    if(!repo?.name||!repo.default_branch)return;
+    const cacheKey=saved.owner+'/'+repo.name,rev=repo.pushed_at||repo.updated_at||'';
+    let cache={};try{cache=JSON.parse(localStorage.getItem(ANALYSIS_KEY)||'{}')||{}}catch{}
+    if(!force&&cache[cacheKey]&&cache[cacheKey].rev===rev&&Date.now()-cache[cacheKey].time<12*3600e3){state.analysis[repo.name]=cache[cacheKey].data;render();return}
+    try{
+      const tree=await fetchTree(saved.owner,repo.name,repo.default_branch);
+      const readme=tree.find(p=>/^README\.(md|markdown|txt)$/i.test(p))||tree.find(p=>/^(docs\/)?README\.(md|markdown|txt)$/i.test(p))||'';
+      const html=tree.find(p=>/^index\.html$/i.test(p))||tree.find(p=>/^docs\/index\.html$/i.test(p))||'';
+      const [rawReadme,rawHTML]=await Promise.all([readme?fetchRaw(saved.owner,repo.name,repo.default_branch,readme):'',html?fetchRaw(saved.owner,repo.name,repo.default_branch,html):'']);
+      const a=extractREADME(rawReadme),b=extractHTML(rawHTML);
+      const description=(repo.description||b.description||a.description||'').replace(/\s+/g,' ').trim().slice(0,220);
+      const title=(meaningfulTitle(b.title)||meaningfulTitle(a.title)||meaningfulTitle(readableRepoName(repo.name))||repo.name).slice(0,90);
+      const rich=description||'GitHub 프로젝트입니다. README 또는 HTML의 설명을 작성하면 자동으로 표시됩니다.';
+      const data={title,description:rich,category:inferCategory({...repo,description:[repo.description||'',b.title||'',b.description||'',b.text||'',a.title||'',a.description||'',a.text||''].join(' ').slice(0,3400)}),subApps:inferSubApps(tree)};
+      state.analysis[repo.name]=data;cache[cacheKey]={rev,time:Date.now(),data};
+      // 캐시 상한과 용량 보호
+      const pruned=Object.fromEntries(Object.entries(cache).sort((x,y)=>y[1].time-x[1].time).slice(0,120));
+      try{localStorage.setItem(ANALYSIS_KEY,JSON.stringify(pruned))}catch{}
+    }catch(err){console.warn('자동 분석을 건너뜁니다:',repo.name,err.message)}
+    render();
+  }
+  async function analyzeRepos(force=false){
+    if(state.analysisBusy)return;
+    state.analysisBusy=true;render();
+    try{
+      // GitHub 비인증 API의 시간당 요청 한도 고려: 최대 35개 저장소만, 4개씩 분석.
+      const todo=state.repos.filter(r=>r&&!r.private&&!r.archived&&r.has_pages).slice(0,35);
+      for(let i=0;i<todo.length;i+=4)await Promise.all(todo.slice(i,i+4).map(r=>analyzeOne(r,force)));
+    }finally{state.analysisBusy=false;render()}
+  }
+
   function inferCategory(repo){const terms=`${repo.name||''} ${repo.description||''} ${(repo.topics||[]).join(' ')} ${repo.language||''}`.toLowerCase();if(/double.?slit|physics|quantum|science|experiment|chemistry|biology|과학|실험/.test(terms))return '과학';if(/hanja|korean|literacy|국어|한자|language/.test(terms))return '국어·한자';if(/math|geometry|prism|fraction|수학|도형|각기둥/.test(terms))return '수학';if(/history|geography|social|사회|역사/.test(terms))return '사회';if(/music|drawing|art|미술|음악/.test(terms))return '예체능';if(/(^|\W)(ai|sw|coding)(\W|$)|algorithm|ethics|machine.?learning|robot|인공지능|알고리즘/.test(terms))return 'AI·SW';return '기타';}
   function buildProjects(){
     const repos=state.repos.filter(r=>r && !r.private && !r.archived && typeof r.name==='string').map(r=>{
-      const id='github:'+r.name, meta=META[r.name]||{}, ed=saved.edits[id]||{};
+      const id='github:'+r.name, fallback=META[r.name]||{}, auto=state.analysis[r.name]||{}, common=sharedCatalog.projects[r.name]||{}, ed=saved.edits[id]||{};
+      const isLocalDraft=!draftIsStale(id)&&Object.keys(ed).length>0;
+      const meta={...auto,...fallback,...common,...(isLocalDraft?ed:{})};
       const base=(r.name.toLowerCase()===`${saved.owner.toLowerCase()}.github.io`)?`https://${saved.owner}.github.io/`:`https://${saved.owner}.github.io/${encodeURIComponent(r.name)}/`;
-      const home=validUrl(r.homepage);
-      const site=typeof ed.site==='string'?validUrl(ed.site):(r.has_pages?(home||base):'');
-      return {id,type:'github',title:ed.title||meta.title||r.name,description:ed.description??meta.description??r.description??'설명을 등록해 보세요.',category:ed.category||meta.category||inferCategory(r),repo:validUrl(r.html_url)||`https://github.com/${encodeURIComponent(saved.owner)}/${encodeURIComponent(r.name)}`,site,pages:!!r.has_pages,updated:r.pushed_at||r.updated_at||r.created_at||'',rawName:r.name,subApps:Array.isArray(ed.subApps)?ed.subApps:(meta.subApps||[])};
+      const home=validUrl(r.homepage);const override=validUrl(meta.site);
+      const site=r.has_pages?(override||home||base):override;
+      return {id,type:'github',title:meta.title||r.name,description:meta.description||r.description||'설명을 등록해 보세요.',category:CATEGORIES.includes(meta.category)?meta.category:inferCategory(r),repo:validUrl(r.html_url)||`https://github.com/${encodeURIComponent(saved.owner)}/${encodeURIComponent(r.name)}`,site,pages:!!site,updated:r.pushed_at||r.updated_at||r.created_at||'',rawName:r.name,subApps:Array.isArray(meta.subApps)?meta.subApps:[],metaSource:isLocalDraft?'draft':Object.keys(common).length?'shared':Object.keys(fallback).length?'preset':Object.keys(auto).length?'auto':'basic'};
     });
-    const virtualApps=VIRTUAL_APPS.flatMap(spec=>{
-      const parent=state.repos.find(r=>String(r.name||'').toLowerCase()===spec.repoName.toLowerCase());
-      if(!parent||parent.private||parent.archived||!parent.has_pages)return [];
-      const id='github:subapp:'+parent.name+':'+spec.slug, ed=saved.edits[id]||{};
-      const isUserSite=parent.name.toLowerCase()===String(saved.owner).toLowerCase()+'.github.io';
-      const base=isUserSite?'https://'+saved.owner+'.github.io/':'https://'+saved.owner+'.github.io/'+encodeURIComponent(parent.name)+'/';
-      const siteDefault=new URL(spec.path,base).href;
-      const sourceBase=validUrl(parent.html_url)||('https://github.com/'+encodeURIComponent(saved.owner)+'/'+encodeURIComponent(parent.name));
-      const branch=encodeURIComponent(parent.default_branch||'main');
-      const source=sourceBase+'/tree/'+branch+'/'+spec.sourcePath.split('/').map(encodeURIComponent).join('/');
-      return [{id,type:'github',title:ed.title||spec.title,description:ed.description??spec.description,category:ed.category||spec.category,repo:source,site:typeof ed.site==='string'?validUrl(ed.site):siteDefault,pages:true,updated:parent.pushed_at||parent.updated_at||parent.created_at||'',rawName:parent.name,subApps:Array.isArray(ed.subApps)?ed.subApps:[]}];
-    });
-    const ids=new Set([...repos,...virtualApps].map(p=>p.id));
-    const manual=saved.manual.filter(p=>p&&typeof p.id==='string'&&!ids.has(p.id)).map(p=>({id:p.id,type:'manual',title:String(p.title||'이름 없는 웹앱'),description:String(p.description||'내가 직접 등록한 바로가기입니다.'),category:CATEGORIES.includes(p.category)?p.category:'기타',repo:validUrl(p.repo),site:validUrl(p.site),pages:!!validUrl(p.site),updated:p.updated||'',rawName:String(p.title||''),subApps:Array.isArray(p.subApps)?p.subApps:[]}));
-    return [...repos,...virtualApps,...manual].filter(p=>!saved.hidden.includes(p.id));
+    const ids=new Set(repos.map(r=>r.id));
+    const localIds=new Set(saved.manual.map(p=>p.id));
+    const manual=[...(sharedCatalog.manual||[]).filter(p=>!localIds.has(p.id)),...saved.manual].filter(p=>p&&typeof p.id==='string'&&!ids.has(p.id)).map(p=>({id:p.id,type:'manual',title:String(p.title||'이름 없는 웹앱'),description:String(p.description||'내가 직접 등록한 바로가기입니다.'),category:CATEGORIES.includes(p.category)?p.category:'기타',repo:validUrl(p.repo),site:validUrl(p.site),pages:!!validUrl(p.site),updated:p.updated||'',rawName:String(p.title||''),subApps:Array.isArray(p.subApps)?p.subApps:[]}));
+    return [...repos,...manual].filter(p=>!saved.hidden.includes(p.id));
   }
   function filteredProjects(all){
     let p=all.filter(x=>state.filter!=='pages'||x.pages).filter(x=>state.filter!=='favorites'||saved.favorites.includes(x.id));
@@ -1418,7 +1584,7 @@ QRCode.createBytes = function(buffer, rsBlocks) {
     const links=appLinks(p);
     const launches=links.length?links.map((link,i)=>`<div class="launch-unit"><div class="launch-caption"><span class="launch-dot"></span>${escapeHtml(link.label)}</div><a class="card-action" href="${escapeHtml(link.url)}" target="_blank" rel="noopener noreferrer">${icon('external')} 웹앱 실행</a><button class="qr-action" type="button" data-action="qr" data-id="${escapeHtml(p.id)}" data-index="${i}">${icon('qr')} QR코드 만들기</button></div>`).join(''):`<div class="launch-unit"><span class="card-action disabled">실행 주소 없음</span><span class="qr-action disabled">QR코드 생성 불가</span></div>`;
     const source=p.repo?`<a class="repo-link" href="${escapeHtml(p.repo)}" target="_blank" rel="noopener noreferrer">${icon('github')} GitHub 소스코드 보기 ${icon('external')}</a>`:'';
-    return `<article class="app-card" data-id="${escapeHtml(p.id)}"><div class="card-visual ${klass}"><div class="visual-icon">${icon(ico)}</div><div class="card-top-actions"><button type="button" class="mini-btn ${starred?'starred':''}" data-action="favorite" data-id="${escapeHtml(p.id)}" title="즐겨찾기 ${starred?'해제':'등록'}" aria-label="즐겨찾기 ${starred?'해제':'등록'}">${icon('star')}</button><button type="button" class="mini-btn" data-action="edit" data-id="${escapeHtml(p.id)}" title="웹앱 정보 편집" aria-label="웹앱 정보 편집">${icon('edit')}</button><button type="button" class="mini-btn" data-action="hide" data-id="${escapeHtml(p.id)}" title="목록에서 숨기기" aria-label="목록에서 숨기기">${icon('eyeoff')}</button></div></div><div class="card-body"><div class="card-kicker"><span class="label">${escapeHtml(p.category)}</span><span class="label ${p.pages?'live':'notlive'}">${p.type==='manual'?'직접 등록':p.pages?'Pages 설정됨':'Pages 미설정'}</span>${links.length>1?`<span class="label">${links.length}개 실행 페이지</span>`:''}</div><h3 class="card-title" title="${escapeHtml(p.title)}">${escapeHtml(p.title)}</h3><p class="card-desc">${escapeHtml(p.description)}</p><div class="card-updated">${icon('clock')} ${escapeHtml(dateLabel(p.updated))}</div></div><div class="launch-area">${launches}${source}</div></article>`;
+    return `<article class="app-card" data-id="${escapeHtml(p.id)}"><div class="card-visual ${klass}"><div class="visual-icon">${icon(ico)}</div><div class="card-top-actions"><button type="button" class="mini-btn ${starred?'starred':''}" data-action="favorite" data-id="${escapeHtml(p.id)}" title="즐겨찾기 ${starred?'해제':'등록'}" aria-label="즐겨찾기 ${starred?'해제':'등록'}">${icon('star')}</button><button type="button" class="mini-btn" data-action="edit" data-id="${escapeHtml(p.id)}" title="웹앱 정보 편집" aria-label="웹앱 정보 편집">${icon('edit')}</button><button type="button" class="mini-btn" data-action="hide" data-id="${escapeHtml(p.id)}" title="목록에서 숨기기" aria-label="목록에서 숨기기">${icon('eyeoff')}</button></div></div><div class="card-body"><div class="card-kicker"><span class="label">${escapeHtml(p.category)}</span><span class="label ${p.pages?'live':'notlive'}">${p.type==='manual'?'직접 등록':p.pages?'Pages 설정됨':'Pages 미설정'}</span>${links.length>1?`<span class="label">${links.length}개 실행 페이지</span>`:''}${p.metaSource==='auto'?'<span class="meta-label">HTML·README 자동 분석</span>':p.metaSource==='draft'?'<span class="meta-label">이 브라우저에서 수정됨</span>':p.metaSource==='shared'?'<span class="meta-label">공통 설정</span>':''}</div><h3 class="card-title" title="${escapeHtml(p.title)}">${escapeHtml(p.title)}</h3><p class="card-desc">${escapeHtml(p.description)}</p><div class="card-updated">${icon('clock')} ${escapeHtml(dateLabel(p.updated))}</div></div><div class="launch-area">${launches}${source}</div></article>`;
   }
 
   function setText(id,value){$(id).textContent=String(value)}
@@ -1433,9 +1599,10 @@ QRCode.createBytes = function(buffer, rsBlocks) {
     $('githubProfileLink').href=`https://github.com/${encodeURIComponent(saved.owner)}`;
     document.querySelectorAll('[data-filter]').forEach(b=>{b.classList.toggle('active',b.dataset.filter===state.filter);b.setAttribute('aria-pressed',String(b.dataset.filter===state.filter));});
     setText('sectionTitle',({pages:'배포된 웹앱',all:'전체 프로젝트',favorites:'즐겨찾기'})[state.filter]);
-    setText('sectionSubtitle',state.loading?'GitHub에서 최신 목록을 불러오는 중입니다...':state.error?'GitHub 자동 수집에 문제가 있습니다.':'GitHub 공개 저장소와 내가 직접 등록한 프로젝트를 함께 관리합니다.');
+    setText('sectionSubtitle',state.loading?'GitHub에서 최신 목록을 불러오는 중입니다...':state.error?'GitHub 자동 수집에 문제가 있습니다.':'공개 저장소 자동 분석 · GitHub 공통 설정 · QR코드');
     updateCategories(all);
-    setText('resultsNote',`${shown.length}개의 프로젝트${state.loading?' · 동기화 중':''}${state.lastSynced&&!state.loading?' · 마지막 확인 '+state.lastSynced.toLocaleTimeString('ko-KR',{hour:'2-digit',minute:'2-digit'}):''}`);
+    setText('resultsNote',`${shown.length}개의 프로젝트${state.loading?' · 동기화 중':''}${state.analysisBusy?' · HTML·README 분석 중':''}${state.lastSynced&&!state.loading?' · 마지막 확인 '+state.lastSynced.toLocaleTimeString('ko-KR',{hour:'2-digit',minute:'2-digit'}):''}`);
+    updateSharedNotice();
     $('noticeArea').innerHTML=state.error?`<div class="notice">${icon('alert')}<div>${escapeHtml(state.error)} <button type="button" class="text-link" id="retryLink" style="border:0;background:transparent">다시 시도하기</button></div></div>`:'';
     if(state.loading&&!all.length){$('cardGrid').innerHTML='<div class="empty" style="grid-column:1/-1"><div class="empty-ico">'+icon('refresh')+'</div><h3>GitHub 목록을 불러오는 중<span class="loading-dots"></span></h3><p>잠시 기다려 주세요.</p></div>';return}
     if(!shown.length){
@@ -1448,7 +1615,7 @@ QRCode.createBytes = function(buffer, rsBlocks) {
   async function loadRepos(force=false){
     state.loading=true;state.error='';render();
     let cached=null;try{cached=JSON.parse(localStorage.getItem(CACHE_KEY)||'null')}catch{}
-    if(!force&&cached&&cached.owner===saved.owner&&Date.now()-cached.time<1000*60*8&&Array.isArray(cached.repos)){state.repos=cached.repos;state.loading=false;state.lastSynced=new Date(cached.time);render();return}
+    if(!force&&cached&&cached.owner===saved.owner&&Date.now()-cached.time<1000*60*8&&Array.isArray(cached.repos)){state.repos=cached.repos;state.loading=false;state.lastSynced=new Date(cached.time);render();analyzeRepos(force);return}
     const collected=[];
     try{
       // 인증 없이 읽을 수 있는 GitHub 공개 저장소 API. 개인용 토큰을 코드에 넣지 마세요.
@@ -1462,11 +1629,11 @@ QRCode.createBytes = function(buffer, rsBlocks) {
       state.repos=collected;state.lastSynced=new Date();
       try{localStorage.setItem(CACHE_KEY,JSON.stringify({owner:saved.owner,time:Date.now(),repos:collected}))}catch{}
     }catch(err){if(cached&&cached.owner===saved.owner&&Array.isArray(cached.repos)){state.repos=cached.repos;state.lastSynced=new Date(cached.time);state.error=(err.message||'네트워크 오류')+' 이전에 저장된 공개 목록을 표시합니다.';}else {state.repos=[];state.error=(err.message||'네트워크 오류')+' 인터넷 연결 및 GitHub 사용자 이름을 확인해 주세요.'}}
-    finally{state.loading=false;render()}
+    finally{state.loading=false;render();if(state.repos.length)analyzeRepos(force)}
   }
   function openDialog(id){const d=$(id);if(typeof d.showModal==='function')d.showModal();else d.setAttribute('open','');}
   function closeDialog(id){const d=$(id);if(typeof d.close==='function')d.close();else d.removeAttribute('open');}
-  function openEditor(p=null){state.editId=p?.id||null;$('editorForm').reset();setText('editorTitle',p?'웹앱 정보 수정':'웹앱 직접 추가');setText('editorSubtitle',p&&p.type==='github'?'GitHub 원본은 그대로 두고, 이 브라우저에서 보이는 정보를 수정합니다.':'직접 등록한 앱은 이 브라우저에서만 보입니다.');$('fieldTitle').value=p?.title||'';$('fieldDescription').value=p?.description||'';$('fieldCategory').value=p?.category||'기타';$('fieldSite').value=p?.site||'';$('fieldSubApps').value=(p?.subApps||[]).map(a=>`${a.label} | ${a.path}`).join('\n');$('fieldRepo').value=p?.repo||'';$('repoField').hidden=!!p&&p.type==='github';$('deleteManual').hidden=!p||p.type!=='manual';setText('siteHint',p?.type==='github'?'배포 주소가 기본값과 다르면 여기에 정확한 URL을 등록하세요.':'공개 또는 비공개 작업물의 웹앱 실행 주소를 등록하세요.');openDialog('editorDialog');}
+  function openEditor(p=null){state.editId=p?.id||null;$('editorForm').reset();setText('editorTitle',p?'웹앱 정보 수정':'웹앱 직접 추가');setText('editorSubtitle',p&&p.type==='github'?'GitHub 원본은 그대로 두고, 먼저 이 브라우저에서 수정됩니다. 모든 PC에 반영하려면 「공통 설정 발행」을 눌러 catalog.json을 GitHub에 업로드하세요.':'직접 등록한 앱은 이 브라우저에서만 보입니다.');$('fieldTitle').value=p?.title||'';$('fieldDescription').value=p?.description||'';$('fieldCategory').value=p?.category||'기타';$('fieldSite').value=p?.site||'';$('fieldSubApps').value=(p?.subApps||[]).map(a=>`${a.label} | ${a.path}`).join('\n');$('fieldRepo').value=p?.repo||'';$('repoField').hidden=!!p&&p.type==='github';$('deleteManual').hidden=!p||p.type!=='manual';setText('siteHint',p?.type==='github'?'배포 주소가 기본값과 다르면 여기에 정확한 URL을 등록하세요.':'공개 또는 비공개 작업물의 웹앱 실행 주소를 등록하세요.');openDialog('editorDialog');}
   function parseSubApps(value){
     const lines=value.split(/\r?\n/).map(s=>s.trim()).filter(Boolean);
     if(lines.length>20)throw new Error('추가 웹앱은 최대 20개까지 등록할 수 있습니다.');
@@ -1476,18 +1643,18 @@ QRCode.createBytes = function(buffer, rsBlocks) {
     e.preventDefault();const title=$('fieldTitle').value.trim(),category=$('fieldCategory').value,description=$('fieldDescription').value.trim(),site=$('fieldSite').value.trim(),repo=$('fieldRepo').value.trim();
     if(!title)return alert('웹앱 이름을 입력해 주세요.');if(site&&!validUrl(site))return alert('웹앱 주소는 https:// 또는 http://로 시작해야 합니다.');if(repo&&!validUrl(repo))return alert('소스코드 주소를 확인해 주세요.');
     let subApps;try{subApps=parseSubApps($('fieldSubApps').value)}catch(err){return alert(err.message)}
-    if(state.editId?.startsWith('github:')){saved.edits[state.editId]={...saved.edits[state.editId],title,description,category,site:site||'',subApps};}
+    if(state.editId?.startsWith('github:')){saved.editBases[state.editId]=JSON.stringify(sharedCatalog.projects[state.editId.slice(7)]||{});saved.edits[state.editId]={...saved.edits[state.editId],title,description,category,site:site||'',subApps};}
     else if(state.editId){const idx=saved.manual.findIndex(p=>p.id===state.editId);if(idx>=0)saved.manual[idx]={...saved.manual[idx],title,description,category,site,repo,subApps,updated:new Date().toISOString()};}
     else{const id='manual:'+Date.now().toString(36)+'-'+Math.random().toString(36).slice(2,8);saved.manual.push({id,title,description,category,site,repo,subApps,updated:new Date().toISOString()});state.filter='all';}
-    persist();closeDialog('editorDialog');render();
+    persist();closeDialog('editorDialog');render();if(state.editId?.startsWith('github:'))alert('이 브라우저에서 수정했습니다. 집·학교 공통 적용은 상단 「공통 설정 발행」에서 catalog.json을 GitHub에 올리면 완료됩니다.');
   }
 
   function toggleFavorite(id){saved.favorites=saved.favorites.includes(id)?saved.favorites.filter(x=>x!==id):[...saved.favorites,id];persist();render()}
   function hideProject(id){const p=buildProjects().find(p=>p.id===id);if(!p)return;if(confirm(`“${p.title}” 프로젝트를 대시보드에서 숨기시겠습니까?\n설정에서 언제든 복원할 수 있습니다.`)){saved.hidden=[...new Set([...saved.hidden,id])];persist();render()}}
   function renderHidden(){const el=$('hiddenList');if(!saved.hidden.length){el.innerHTML='<span style="color:#9ca4b5;font-size:11px">숨긴 저장소가 없습니다.</span>';return;}el.innerHTML=saved.hidden.map(id=>`<button class="hidden-pill" type="button" data-restore="${escapeHtml(id)}">${escapeHtml(id.replace(/^github:|^manual:/,''))} × 복원</button>`).join('');}
-  function openSettings(){$('settingsOwner').value=saved.owner;$('settingsPagesOnly').checked=!!saved.pagesOnly;renderHidden();openDialog('settingsDialog')}
+  function openSettings(){updateSharedNotice();$('settingsOwner').value=saved.owner;$('settingsPagesOnly').checked=!!saved.pagesOnly;renderHidden();openDialog('settingsDialog')}
   function exportData(){const content=JSON.stringify({exportedAt:new Date().toISOString(),version:1,settings:saved},null,2);const blob=new Blob([content],{type:'application/json;charset=utf-8'});const a=document.createElement('a');const url=URL.createObjectURL(blob);a.href=url;a.download='my-webapp-studio-backup.json';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1500)}
-  function importData(file){if(!file)return;const reader=new FileReader();reader.onload=()=>{try{const payload=JSON.parse(String(reader.result));const v=payload.settings;if(!v||!Array.isArray(v.manual)||!Array.isArray(v.favorites)||!Array.isArray(v.hidden)||!v.edits||typeof v.owner!=='string')throw new Error('올바른 백업 파일이 아닙니다.');if(!confirm('현재 저장된 직접 등록·즐겨찾기·수정 정보를 백업 내용으로 교체하시겠습니까?'))return;saved={...defaultData(),...v};persist();closeDialog('settingsDialog');state.category='all';state.filter='pages';state.repos=[];loadRepos(true);}catch(err){alert('불러오기 실패: '+err.message)}finally{$('importFile').value=''}};reader.readAsText(file)}
+  function importData(file){if(!file)return;const reader=new FileReader();reader.onload=()=>{try{const payload=JSON.parse(String(reader.result));const v=payload.settings;if(!v||!Array.isArray(v.manual)||!Array.isArray(v.favorites)||!Array.isArray(v.hidden)||!v.edits||typeof v.owner!=='string')throw new Error('올바른 백업 파일이 아닙니다.');if(!confirm('현재 저장된 직접 등록·즐겨찾기·수정 정보를 백업 내용으로 교체하시겠습니까?'))return;saved={...defaultData(),...v,editBases:v.editBases&&typeof v.editBases==='object'?v.editBases:{}};if(sharedStatus==='ready')reconcileDrafts();persist();closeDialog('settingsDialog');state.category='all';state.filter='pages';state.repos=[];loadRepos(true);}catch(err){alert('불러오기 실패: '+err.message)}finally{$('importFile').value=''}};reader.readAsText(file)}
   let qrActive={title:'',label:'',url:''};
   function openQr(title,label,url){
     qrActive={title,label,url};setText('qrTitle',`${label} · 접속 QR코드`);setText('qrSubtitle',`${title} — 카메라로 QR코드를 비춰 주세요.`);
@@ -1522,13 +1689,17 @@ QRCode.createBytes = function(buffer, rsBlocks) {
   $('addButton').addEventListener('click',()=>openEditor());$('editorForm').addEventListener('submit',handleEditSave);
   $('deleteManual').addEventListener('click',()=>{if(!state.editId)return;if(!confirm('이 직접 등록한 웹앱을 삭제하시겠습니까?'))return;saved.manual=saved.manual.filter(p=>p.id!==state.editId);saved.favorites=saved.favorites.filter(id=>id!==state.editId);persist();closeDialog('editorDialog');render()});
   $('topSettings').addEventListener('click',openSettings);$('sidebarSettings').addEventListener('click',openSettings);$('sidebarGuide').addEventListener('click',()=>openDialog('guideDialog'));$('refreshButton').addEventListener('click',()=>loadRepos(true));
-  $('saveSettings').addEventListener('click',()=>{const next=$('settingsOwner').value.trim();if(!/^[a-z\d](?:[a-z\d-]{0,37}[a-z\d])?$/i.test(next))return alert('올바른 GitHub 사용자 이름을 입력해 주세요.');const changed=next!==saved.owner;saved.owner=next;saved.pagesOnly=$('settingsPagesOnly').checked;persist();state.filter=saved.pagesOnly?'pages':'all';state.category='all';closeDialog('settingsDialog');if(changed){state.repos=[];loadRepos(true)}else render()});
+  $('saveSettings').addEventListener('click',()=>{const next=$('settingsOwner').value.trim();if(!/^[a-z\d](?:[a-z\d-]{0,37}[a-z\d])?$/i.test(next))return alert('올바른 GitHub 사용자 이름을 입력해 주세요.');const changed=next!==saved.owner;saved.owner=next;saved.pagesOnly=$('settingsPagesOnly').checked;persist();state.filter=saved.pagesOnly?'pages':'all';state.category='all';closeDialog('settingsDialog');if(changed){state.repos=[];state.analysis={};loadSharedCatalog();loadRepos(true)}else render()});
   $('hiddenList').addEventListener('click',e=>{const btn=e.target.closest('[data-restore]');if(!btn)return;saved.hidden=saved.hidden.filter(id=>id!==btn.dataset.restore);persist();renderHidden();render()});
   $('exportButton').addEventListener('click',exportData);$('importButton').addEventListener('click',()=>$('importFile').click());$('importFile').addEventListener('change',e=>importData(e.target.files[0]));
   document.querySelectorAll('[data-close]').forEach(b=>b.addEventListener('click',()=>closeDialog(b.dataset.close)));
   document.querySelectorAll('dialog').forEach(dialog=>dialog.addEventListener('click',event=>{if(event.target===dialog)dialog.close()}));
   $('menuToggle').addEventListener('click',()=>{$('sidebar').classList.add('open');$('overlay').classList.add('active')});$('overlay').addEventListener('click',()=>{$('sidebar').classList.remove('open');$('overlay').classList.remove('active')});
-  state.filter=saved.pagesOnly?'pages':'all';render();loadRepos();
+  $('catalogButton').addEventListener('click',publishCatalog);
+  $('publishCatalog').addEventListener('click',publishCatalog);
+  $('refreshShared').addEventListener('click',()=>loadSharedCatalog());
+  $('discardDrafts').addEventListener('click',()=>{if(!Object.keys(saved.edits).length)return alert('이 브라우저에 남은 로컬 수정본이 없습니다.');if(!confirm('이 브라우저의 제목·설명 수정 초안만 삭제하고 GitHub의 공통 정보를 사용하시겠습니까? 즐겨찾기와 직접 추가한 항목은 유지됩니다.'))return;saved.edits={};saved.editBases={};persist();updateSharedNotice();render()});
+  state.filter=saved.pagesOnly?'pages':'all';render();loadSharedCatalog();loadRepos();
   </script>
 </body>
 </html>

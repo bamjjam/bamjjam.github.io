@@ -1,0 +1,31 @@
+{
+  "version": 1,
+  "projects": {
+    "ai-ethics": {
+      "title": "추천 알고리즘과 AI 윤리",
+      "description": "학생용·교사용·결과 대시보드를 한 저장소에서 실행",
+      "category": "AI·SW",
+      "subApps": [
+        {
+          "label": "교사용",
+          "path": "teacher.html"
+        },
+        {
+          "label": "대시보드",
+          "path": "dashboard.html"
+        }
+      ]
+    },
+    "Double-slit-experiment": {
+      "title": "이중슬릿 실험 시뮬레이터",
+      "description": "관측과 간섭 현상을 살펴보는 과학 시뮬레이터",
+      "category": "과학"
+    },
+    "bamjjam.github.io": {
+      "title": "My WebApp Studio",
+      "description": "GitHub에 배포한 웹앱을 자동 분석하고 QR코드로 공유하는 관리 포털",
+      "category": "AI·SW"
+    }
+  },
+  "manual": []
+}
